@@ -1,6 +1,6 @@
 var {$debug, getExportNameForType} = require('./util');
 var convertToPropTypes = require('./convertToPropTypes');
-var makePropTypesAst = require('./makePropTypesAst');
+var makePropTypesAst = require('./makePropTypesAST');
 
 var matchedPropTypes;
 
