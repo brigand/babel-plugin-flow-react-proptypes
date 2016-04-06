@@ -39,7 +39,7 @@ module.exports = function convertToPropTypes(node, typesToIdentifiers) {
       resultPropType = {type: 'raw', value: typesToIdentifiers[node.id.name]};
     }
     else {
-      resultPropType = {type: 'any'};
+      resultPropType = {type: 'instanceOf', of: node.id.name};
     }
   }
   else if (node.type === 'UnionTypeAnnotation') {

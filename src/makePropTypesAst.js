@@ -47,6 +47,12 @@ function makePropTypesAst(propTypeData) {
         [t.arrayExpression(data.options.map(makePropType))]
       )
     }
+    else if (method === 'instanceOf') {
+      node = t.callExpression(
+        t.memberExpression(node, t.identifier('instanceOf')),
+        [t.identifier(data.of)]
+      )
+    }
     else {
       console.error(PLUGIN_NAME + ': This is an internal error that should never happen. Report it immediately with the source file and babel config.', data);
       $debug('Unknown node ' + JSON.stringify(data, null, 2));

@@ -48,7 +48,7 @@ Foo.propTypes = {
   a_number: React.PropTypes.number.isRequired,
   a_generic_object: React.PropTypes.any.isRequired,
   array_of_strings: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  instance_of_Bar: React.PropTypes.any.isRequired,
+  instance_of_Bar: React.PropTypes.instanceOf(Bar).isRequired,
   anything: React.PropTypes.any.isRequired,
   one_of: React.PropTypes.oneOf(['QUACK', 'BARK', 5]).isRequired,
   onw_of_type: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]).isRequired,
