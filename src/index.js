@@ -21,7 +21,7 @@ const getPropsForTypeAnnotation = typeAnnotation => {
   if (typeAnnotationReference) {
     props = internalTypes[typeAnnotationReference] || importedTypes[typeAnnotationReference];
     if (!props) {
-      throw new Error(`Did not find type annotation for reference ${typeAnnotationReference}`);
+      $debug(`Did not find type annotation for reference ${typeAnnotationReference}`);
     }
   }
   else if (typeAnnotation.properties) {

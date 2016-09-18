@@ -3,8 +3,9 @@ import {$debug, PLUGIN_NAME} from './util';
 export default function convertToPropTypes(node, importedTypes, internalTypes) {
   $debug('convertToPropTypes', node);
   let resultPropType;
-
-  if (node.type === 'ObjectTypeAnnotation') {
+  
+  if (!node) resultPropType = {};
+  else if (node.type === 'ObjectTypeAnnotation') {
     const ret = node.properties.map((subnode) => {
       const key = subnode.key.name;
       let value = subnode.value;
