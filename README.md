@@ -102,3 +102,9 @@ To save some bytes in production, you can also only enable it in development mod
   }
 }
 ```
+
+If you already have other plugins in plugins section. It is important to place
+`flow-react-proptypes` before the following plugins:
+
+* `transform-class-properties`
+* `transform-flow-strip-types`
