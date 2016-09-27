@@ -32,8 +32,9 @@ Foo.propTypes = {
   array_of_strings: require('react').PropTypes.arrayOf(require('react').PropTypes.string).isRequired,
   instance_of_Bar: require('react').PropTypes.any.isRequired,
   anything: require('react').PropTypes.any.isRequired,
+  mixed: require('react').PropTypes.any.isRequired,
   one_of: require('react').PropTypes.oneOf(['QUACK', 'BARK', 5]).isRequired,
-  onw_of_type: require('react').PropTypes.oneOfType([require('react').PropTypes.number, require('react').PropTypes.string]).isRequired,
+  one_of_type: require('react').PropTypes.oneOfType([require('react').PropTypes.number, require('react').PropTypes.string]).isRequired,
   nested_object_level_1: require('react').PropTypes.shape({
     string_property_1: require('react').PropTypes.string.isRequired,
     nested_object_level_2: require('react').PropTypes.shape({

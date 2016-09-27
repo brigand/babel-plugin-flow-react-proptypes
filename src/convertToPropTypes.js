@@ -24,6 +24,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
   }
   else if (node.type === 'FunctionTypeAnnotation') resultPropType = {type: 'func'};
   else if (node.type === 'AnyTypeAnnotation') resultPropType = {type: 'any'};
+  else if (node.type === 'MixedTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'TypeofTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'NumberTypeAnnotation') resultPropType = {type: 'number'};
   else if (node.type === 'StringTypeAnnotation') resultPropType = {type: 'string'};

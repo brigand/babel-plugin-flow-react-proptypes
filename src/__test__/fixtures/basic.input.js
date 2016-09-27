@@ -8,8 +8,9 @@ type FooProps = {
   array_of_strings: Array<string>,
   instance_of_Bar: Bar,
   anything: any,
+  mixed: mixed,
   one_of: 'QUACK' | 'BARK' | 5,
-  onw_of_type: number | string,
+  one_of_type: number | string,
   nested_object_level_1: {
     string_property_1: string,
     nested_object_level_2: {
