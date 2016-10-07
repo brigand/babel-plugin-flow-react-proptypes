@@ -3,7 +3,7 @@ import {$debug, PLUGIN_NAME} from './util';
 export default function convertToPropTypes(node, importedTypes, internalTypes) {
   $debug('convertToPropTypes', node);
   let resultPropType;
-  
+
   if (node.type === 'ObjectTypeAnnotation') {
     const ret = node.properties.map((subnode) => {
       const key = subnode.key.name;
@@ -20,7 +20,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
       return {key, value};
     });
 
-    resultPropType = {type: 'shape', properties: ret};
+    resultPropType = {type: 'shape', properties: ret, isExact: node.exact};
   }
   else if (node.type === 'FunctionTypeAnnotation') resultPropType = {type: 'func'};
   else if (node.type === 'AnyTypeAnnotation') resultPropType = {type: 'any'};
@@ -36,6 +36,13 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     resultPropType.optional = true;
   }
   else if (node.type === 'IntersectionTypeAnnotation') resultPropType = {type: 'any'};
+  // Exact
+  else if (node.type === 'GenericTypeAnnotation' && node.id.name === '$Exact') {
+    resultPropType = {
+      type: 'exact',
+      properties: convertToPropTypes(node.typeParameters.params[0], importedTypes, internalTypes),
+    };
+  }
   else if (node.type === 'GenericTypeAnnotation' || node.type === 'ArrayTypeAnnotation') {
     if (node.type === 'ArrayTypeAnnotation' || node.id.name === 'Array') {
       let arrayType;

@@ -12,7 +12,12 @@ export default function makePropTypesAst(propTypeData) {
   return t.objectExpression(rootProperties);
 };
 
-function makePropType(data) {
+function makePropType(data, isExact) {
+  if (data.type === 'exact') {
+    data.properties.isRequired = data.isRequired;
+    return makePropType(data.properties, true);
+  }
+
   const method = data.type;
 
   const reactNode = t.callExpression(t.identifier('require'), [makeLiteral('react')]);
@@ -29,11 +34,18 @@ function makePropType(data) {
   }
   else if (method === 'shape') {
     const shapeObjectProperties = data.properties.map(({key, value}) => {
-      return t.objectProperty(
-        t.identifier(key),
-        makePropType(value)
-      );
+      return t.objectProperty(t.identifier(key), makePropType(value));
     });
+    if (isExact || data.isExact) {
+      shapeObjectProperties.push(
+        t.objectProperty(
+          t.identifier('__exact__'),
+          exactTemplate({
+            '$props$': t.objectExpression(data.properties.map(({key}) => t.objectProperty(t.identifier(key), t.booleanLiteral(true))))
+          }).expression
+        )
+      );
+    }
     const shapeObjectLiteral = t.objectExpression(shapeObjectProperties);
     node = t.callExpression(
       t.memberExpression(node, t.identifier('shape')),
@@ -78,5 +90,20 @@ function makePropType(data) {
 const dontSetTemplate = template(`
 (props, propName, componentName) => {
   if(props[propName] != null) return new Error(\`Invalid prop \\\`\${propName}\\\` of value \\\`\${value}\\\` passed to \\\`\${componentName\}\\\`. Expected undefined or null.\`);
+}
+`);
+
+const exactTemplate = template(`
+(values, prop, displayName) => {
+  var props = $props$;
+  var extra = [];
+  for (var k in values) {
+    if (values.hasOwnProperty(k) && !props.hasOwnProperty(k)) {
+      extra.push(k);
+    }
+  }
+  if (extra.length > 0) {
+    return new Error('Invalid additional prop(s) ' + JSON.stringify(extra));
+  }
 }
 `);

@@ -1,5 +1,5 @@
 'use strict';
-'no babel-pluign-flow-react-proptypes';
+'no babel-plugin-flow-react-proptypes';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
