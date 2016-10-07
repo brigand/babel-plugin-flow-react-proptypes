@@ -4,8 +4,8 @@
   "description": "converts flow types to react proptypes",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "eslint src",
-    "test": "npm run build && ./scripts/test",
+    "lint": "eslint src test",
+    "test": "npm run build && mocha --compilers js:babel-core/register",
     "build": "babel src/ --out-dir lib/ --ignore src/__test__ --presets es2015,stage-1,react"
   },
   "repository": {
@@ -36,7 +36,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "eslint": "^3.3.1",
-    "eslint-plugin-react": "^6.1.2"
+    "eslint-plugin-react": "^6.1.2",
+    "mocha": "^3.1.0"
   },
   "dependencies": {
     "babel-template": "^6.7.0",

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-npm run build
-./node_modules/.bin/babel  --presets es2015,stage-1,react --plugins ../../../lib/index.js src/__test__/fixtures/$1.input.js
-
