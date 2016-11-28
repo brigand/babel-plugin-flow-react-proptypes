@@ -27,6 +27,9 @@
     "url": "https://github.com/brigand/babel-plugin-flow-react-proptypes/issues"
   },
   "homepage": "https://github.com/brigand/babel-plugin-flow-react-proptypes#readme",
+  "files": [
+    "lib/*.js"
+  ],
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.0",
