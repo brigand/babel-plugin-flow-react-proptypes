@@ -3,6 +3,7 @@ A babel plugin to generate React PropTypes definitions from Flow type declaratio
 [![build status](https://img.shields.io/travis/brigand/babel-plugin-flow-react-proptypes/master.svg?style=flat-square)](https://travis-ci.org/brigand/babel-plugin-flow-react-proptypes)
 [![npm version](https://img.shields.io/npm/v/babel-plugin-flow-react-proptypes.svg?style=flat-square)](https://www.npmjs.com/package/babel-plugin-flow-react-proptypes)
 [![npm downloads](https://img.shields.io/npm/dm/babel-plugin-flow-react-proptypes.svg?style=flat-square)](https://www.npmjs.com/package/babel-plugin-flow-react-proptypes)
+[![Dependency Status](https://img.shields.io/david/brigand/babel-plugin-flow-react-proptypes.svg?style=flat-square)](https://david-dm.org/brigand/babel-plugin-flow-react-proptypes)
 
 ## Example
 
