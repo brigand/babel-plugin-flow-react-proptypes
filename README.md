@@ -20,7 +20,7 @@ type FooProps = {
   instance_of_Bar: Bar,
   anything: any,
   one_of: 'QUACK' | 'BARK' | 5,
-  onw_of_type: number | string,
+  one_of_type: number | string,
   nested_object_level_1: {
     string_property_1: string,
     nested_object_level_2: {
@@ -54,7 +54,7 @@ Foo.propTypes = {
   instance_of_Bar: React.PropTypes.any.isRequired,
   anything: React.PropTypes.any.isRequired,
   one_of: React.PropTypes.oneOf(['QUACK', 'BARK', 5]).isRequired,
-  onw_of_type: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]).isRequired,
+  one_of_type: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]).isRequired,
   nested_object_level_1: React.PropTypes.shape({
     string_property_1: React.PropTypes.string.isRequired,
     nested_object_level_2: React.PropTypes.shape({
