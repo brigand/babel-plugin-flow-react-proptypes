@@ -236,12 +236,9 @@ module.exports = function flowReactPropTypes(babel) {
         if (propTypesAst.type === 'ObjectExpression') {
           propTypesAst = t.callExpression(
             t.memberExpression(
-              t.memberExpression(
-                t.callExpression(
-                  t.identifier('require'),
-                  [t.stringLiteral('react')]
-                ),
-                t.identifier('PropTypes')
+              t.callExpression(
+                t.identifier('require'),
+                [t.stringLiteral('prop-types')]
               ),
               t.identifier('shape'),
             ),
@@ -301,14 +298,9 @@ module.exports = function flowReactPropTypes(babel) {
                       t.identifier(getExportNameForType(typeName))
                     ),
                     t.memberExpression(
-                      t.memberExpression(
-                        t.callExpression(
-                          t.identifier('require'),
-                          [
-                            t.stringLiteral('react'),
-                          ]
-                        ),
-                        t.identifier('PropTypes')
+                      t.callExpression(
+                        t.identifier('require'),
+                        [t.stringLiteral('prop-types')]
                       ),
                       t.identifier('any')
                     )
