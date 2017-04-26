@@ -13,10 +13,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== \"function\
 
 var React = require(\'react\');
 
-var babelPluginFlowReactPropTypes_proptype_T = require(\'./T\').babelPluginFlowReactPropTypes_proptype_T || require(\'react\').PropTypes.any;
+var babelPluginFlowReactPropTypes_proptype_T = require(\'./T\').babelPluginFlowReactPropTypes_proptype_T || require(\'prop-types\').any;
 
 if (typeof exports !== \'undefined\') Object.defineProperty(exports, \'babelPluginFlowReactPropTypes_proptype_U\', {
-  value: require(\'react\').PropTypes.shape({
+  value: require(\'prop-types\').shape({
     foo: require(\'prop-types\').string.isRequired
   })
 });

@@ -12,7 +12,7 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 if (typeof exports !== \'undefined\') Object.defineProperty(exports, \'babelPluginFlowReactPropTypes_proptype_T\', {
-  value: require(\'react\').PropTypes.shape({
+  value: require(\'prop-types\').shape({
     f: require(\'prop-types\').func.isRequired,
     i: require(\'prop-types\').number.isRequired,
     x: require(\'prop-types\').oneOf([\'foo\', \'baz\']).isRequired

@@ -15,7 +15,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== \"function\
 
 var React = require(\'react\');
 
-var babelPluginFlowReactPropTypes_proptype_ExternalType = require(\'../types\').babelPluginFlowReactPropTypes_proptype_ExternalType || require(\'react\').PropTypes.any;
+var babelPluginFlowReactPropTypes_proptype_ExternalType = require(\'../types\').babelPluginFlowReactPropTypes_proptype_ExternalType || require(\'prop-types\').any;
 
 var Foo = function (_React$Component) {
   _inherits(Foo, _React$Component);
