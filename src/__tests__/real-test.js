@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 import React, {PropTypes} from 'react';
 
 type AlbumCardProps = {
@@ -38,7 +38,7 @@ class AlbumCard extends React.Component {
 `;
 
 it('real', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

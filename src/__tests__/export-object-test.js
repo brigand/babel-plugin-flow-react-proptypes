@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 export type Foo = {
   a_string: string,
 };
@@ -8,7 +8,7 @@ console.log('test');
 `;
 
 it('export-object', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

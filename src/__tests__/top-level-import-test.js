@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 import React, { Component } from 'react';
 import type { Data } from 'types';
 
@@ -17,7 +17,7 @@ export default Test;
 `;
 
 it('basic', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

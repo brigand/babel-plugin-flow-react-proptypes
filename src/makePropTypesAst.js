@@ -25,7 +25,8 @@ function makePropType(data, isExact) {
   if (USE_PROPTYPES_PACKAGE) {
     node = t.callExpression(t.identifier('require'), [makeLiteral('prop-types')]);
     isRequired = true;
-  } else {
+  }
+  else {
     reactNode = t.callExpression(t.identifier('require'), [makeLiteral('react')]);
     node = t.memberExpression(reactNode, t.identifier('PropTypes'));
     isRequired = true;

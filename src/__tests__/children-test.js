@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 const React = require('react');
 
 type FooProps = {
@@ -12,7 +12,7 @@ function Foo(props: FooProps) {
 `;
 
 it('children', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

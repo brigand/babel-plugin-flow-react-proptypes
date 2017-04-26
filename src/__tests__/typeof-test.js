@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 const ActionTypes = {
   JUMP_TO: 'react-native/NavigationExperimental/tabs-jumpTo',
 };
@@ -11,7 +11,7 @@ export type JumpToAction = {
 `;
 
 it('typeof', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

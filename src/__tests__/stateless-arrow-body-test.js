@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 var React = require('react');
 
 const arrowFunctionWithBody = () => window.console;
@@ -20,7 +20,7 @@ export default Foo;
 `;
 
 it('stateless-arrow-body', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

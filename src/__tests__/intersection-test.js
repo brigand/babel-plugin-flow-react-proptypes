@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 type Props = {
     someProp: {} & {}
 };
@@ -9,7 +9,7 @@ class MyComponent extends React.Component {
 `;
 
 it('intersection', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

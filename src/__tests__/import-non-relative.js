@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 import type {NamedType} from 'foo';
 import type DefaultType from 'bar';
 
@@ -16,7 +16,7 @@ class C extends React.Component {
 `;
 
 it('import-object', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],

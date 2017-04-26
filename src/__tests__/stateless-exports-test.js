@@ -1,5 +1,5 @@
-var babel = require('babel-core');
-var content = `
+const babel = require('babel-core');
+const content = `
 // @flow
 import React from "react";
 
@@ -13,7 +13,7 @@ export const C2 = function({ m } : { m : string }) {
 `;
 
 it('stateless-exports', () => {
-  var res = babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
