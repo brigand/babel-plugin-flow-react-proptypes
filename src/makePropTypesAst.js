@@ -4,34 +4,67 @@ import template from 'babel-template';
 
 const USE_PROPTYPES_PACKAGE = true;
 
+
+/**
+ * Top-level function to generate prop-types AST.
+ *
+ * This will return an expression sufficient for assignment to the
+ * propTypes property of an React component.
+ *
+ * For complex types, this will be an object, not a shape.
+ *
+ * @param propTypeData Intermediate representation
+ * @returns {*} AST
+ */
 export default function makePropTypesAst(propTypeData) {
   if (propTypeData.type === 'shape-intersect-runtime') {
-    return makePropTypesAstForShapeIntersectRuntimeMerge(propTypeData);
-  }
-  else if (propTypeData.type === 'raw') {
-    return makePropType(propTypeData);
+    // For top-level usage, e.g. Foo.proptype, return
+    // an expression returning an object.
+    return makeObjectMergeAstForShapeIntersectRuntime(propTypeData);
   }
   else if (propTypeData.type === 'shape') {
-    return makePropTypesAstForShape(propTypeData);
+    return makeObjectAstForShape(propTypeData);
   } else {
+    // Required to handle non-object exports.
     return makePropType(propTypeData);
   }
 };
 
-function makePropTypesAstForShapeIntersectRuntime(propTypeData) {
-  const runtimeMerge = makePropTypesAstForShapeIntersectRuntimeMerge(propTypeData);
-  // Turn into prop.
-  return t.callExpression(
-      t.memberExpression(
-          makePropTypeImportNode(),
-          t.identifier('shape'),
-      ),
-      [runtimeMerge],
-  );
 
-}
-
-function makePropTypesAstForShapeIntersectRuntimeMerge(propTypeData) {
+/**
+ * Generates AST for run-time merges involving either import variables,
+ * local types (shape) and other run-time merges.
+ *
+ * The returned AST is an expression that, when evaluated, returns an
+ * object:
+ *
+ * The expression may look like this:
+ *
+ * TODO: Does the nested case below actually work?
+ *
+ * Object.assign(
+ *    {},
+ *    {foo: bar},
+ *    someImportedType === require('prop-types).any ? {} : someImportedType,
+ *    {qux: 2},
+ *    Object.assign(
+ *      {},
+ *      {nested: 2}
+ *    ),
+ *    {quz: require('prop-types').shape({foo: bar}),
+ * );
+ *
+ * This method is mainly useful when objects are actually required, such as when the
+ * type is participating in an intersection or when the result of the intersection is
+ * to be used as the main proptypes, e.g. for Foo.propTypes = {..object}.
+ *
+ * For other uses, the returned object must be wrapped in a shape. See
+ * makeShapeAstForShapeIntersectRuntime().
+ *
+ * @param propTypeData intermediate representation
+ * @returns {*}
+ */
+function makeObjectMergeAstForShapeIntersectRuntime(propTypeData) {
   const propTypeObjects = [];
   propTypeData.properties.forEach(propTypeSpec => {
     if (propTypeSpec.type === 'raw') {
@@ -48,12 +81,12 @@ function makePropTypesAstForShapeIntersectRuntimeMerge(propTypeData) {
 
     }
     else if (propTypeSpec.type === 'shape') {
-      propTypeObjects.push(makePropTypesAstForShape(propTypeSpec));
+      propTypeObjects.push(makeObjectAstForShape(propTypeSpec));
     }
     else if (propTypeSpec.type === 'shape-intersect-runtime') {
       // TODO: simplify all of this recursive code?
       // This returns an object.
-      propTypeObjects.push(makePropTypesAstForShapeIntersectRuntimeMerge(propTypeSpec));
+      propTypeObjects.push(makeObjectMergeAstForShapeIntersectRuntime(propTypeSpec));
     }
   });
   const runtimeMerge = t.callExpression(
@@ -86,6 +119,25 @@ function makePropTypeImportNode() {
     return t.memberExpression(reactNode, t.identifier('PropTypes'));
   }
 }
+/**
+ * Handles all prop types.
+ *
+ * Returns what is expected on the right-hand side of a proptype; that is,
+ * the actual validation function.
+ *
+ * Some special cases exist related to top-level proptypes, where an object is required
+ * instead of a function. This method does not handle these details: it turns the intermediate
+ * representation into something that can be used inside a propType object:
+ *
+ * Foo.propTypes = {
+ *    bar: makePropType(intermediateRepresentation1),
+ *    baz: makePropType(intermediateRepresentation2),
+ * }
+ *
+ * @param data Intermediate representation of one single proptype
+ * @param isExact ??
+ * @returns {*} AST for the prop-types validation function
+ */
 function makePropType(data, isExact) {
 
   const method = data.type;
@@ -104,7 +156,7 @@ function makePropType(data, isExact) {
   }
   else if (method === 'raw') {
     // In 'raw', we handle variables - typically derived from imported types.
-    // These are either objects or functons. Objects are wrapped in a shape;
+    // These are either - at run-time - objects or functions. Objects are wrapped in a shape;
     // for functions, we assume that the variable already contains a proptype assertion
 
     const variableNode = t.identifier(data.value);
@@ -115,8 +167,8 @@ function makePropType(data, isExact) {
         ),
         [variableNode],
     );
-    const functionCheck = t.binaryExpression('===', t.unaryExpression('typeof', variableNode), t.stringLiteral('function'));
-    node = t.conditionalExpression(functionCheck, variableNode, shapeNode);
+    const functionCheckNode = t.binaryExpression('===', t.unaryExpression('typeof', variableNode), t.stringLiteral('function'));
+    node = t.conditionalExpression(functionCheckNode, variableNode, shapeNode);
     isRequired = false;
   }
   else if (method === 'shape') {
