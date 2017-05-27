@@ -98,14 +98,31 @@ function makeObjectMergeAstForShapeIntersectRuntime(propTypeData) {
   return runtimeMerge;
 }
 
-function makePropTypesAstForShape(propTypeData) {
+/**
+ * Like makeShapeAstForShapeIntersectRuntime, but wraps the props in a shape.
+ *
+ * This is useful for nested uses.
+ *
+ */
+function makeShapeAstForShapeIntersectRuntime(propTypeData) {
+  const runtimeMerge = makeObjectMergeAstForShapeIntersectRuntime(propTypeData);
+  return t.callExpression(
+      t.memberExpression(
+          makePropTypeImportNode(),
+          t.identifier('shape'),
+      ),
+      [runtimeMerge],
+  );
+}
+
+function makeObjectAstForShape(propTypeData) {
   // TODO: this is almost duplicated with the shape handling below;
   // but this code does not generate AST for a shape function,
   // but returns the AST for the object instead.
   const rootProperties = propTypeData.properties.map(({key, value}) => {
     return t.objectProperty(
-      t.identifier(key),
-      makePropType(value)
+        t.identifier(key),
+        makePropType(value)
     );
   });
   return t.objectExpression(rootProperties);
@@ -186,14 +203,15 @@ function makePropType(data, isExact) {
         )
       );
     }
-    const shapeObjectLiteral = t.objectExpression(shapeObjectProperties);
+    const shapeObjectExpression = t.objectExpression(shapeObjectProperties);
     node = t.callExpression(
-      t.memberExpression(node, t.identifier('shape')),
-      [shapeObjectLiteral]
+        t.memberExpression(node, t.identifier('shape')),
+        [shapeObjectExpression]
     );
   }
   else if (method === 'shape-intersect-runtime') {
-    node = makePropTypesAstForShapeIntersectRuntime(data);
+    // Return shape, not object
+    node = makeShapeAstForShapeIntersectRuntime(data);
   }
   else if (method === 'arrayOf') {
     node = t.callExpression(
