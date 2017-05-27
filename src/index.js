@@ -6,7 +6,7 @@ import {
   hasReactElementTypeAnnotationReturn,
 } from './util';
 import convertToPropTypes from './convertToPropTypes';
-import makePropTypesAst from './makePropTypesAst';
+import {makePropTypesAstForExport, makePropTypesAstForPropTypesAssignment} from './makePropTypesAst';
 
 // maps between type alias name to prop types
 let internalTypes = {};
@@ -103,7 +103,10 @@ module.exports = function flowReactPropTypes(babel) {
       throw new Error(`Did not find type annotation for ${name}`);
     }
 
-    const propTypesAST = makePropTypesAst(props);
+    const propTypesAST = makePropTypesAstForPropTypesAssignment(props);
+    if (propTypesAST == null) {
+      return;
+    }
     const attachPropTypesAST = t.expressionStatement(
       t.assignmentExpression(
         '=',
@@ -239,7 +242,7 @@ module.exports = function flowReactPropTypes(babel) {
         const propTypes = convertNodeToPropTypes(declarationObject);
         internalTypes[name] = propTypes;
 
-        const propTypesAst = makePropTypesAst(propTypes);
+        const propTypesAst = makePropTypesAstForExport(propTypes);
 
         const exportAst = t.expressionStatement(t.callExpression(
           t.memberExpression(t.identifier('Object'), t.identifier('defineProperty')),

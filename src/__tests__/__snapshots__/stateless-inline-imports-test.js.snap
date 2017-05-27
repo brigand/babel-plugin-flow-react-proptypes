@@ -16,5 +16,5 @@ var C = function C(props) {
     props.name
   );
 };
-C.propTypes = typeof babelPluginFlowReactPropTypes_proptype_T === \'function\' ? babelPluginFlowReactPropTypes_proptype_T : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_T);"
+C.propTypes = babelPluginFlowReactPropTypes_proptype_T === require(\'prop-types\').any ? {} : babelPluginFlowReactPropTypes_proptype_T;"
 `;

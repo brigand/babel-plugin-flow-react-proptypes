@@ -4,19 +4,19 @@ import template from 'babel-template';
 
 const USE_PROPTYPES_PACKAGE = true;
 
-
 /**
  * Top-level function to generate prop-types AST.
  *
- * This will return an expression sufficient for assignment to the
- * propTypes property of an React component.
- *
- * For complex types, this will be an object, not a shape.
+ * This will return an expression suitable for assignment to the
+ * propTypes property of an React component. In particular,
+ * the AST returned will always yield an object. Assignment
+ * to Foo.propTypes is possible for objects, not simple
+ * types.
  *
  * @param propTypeData Intermediate representation
- * @returns {*} AST
+ * @returns {*} AST expression always returning an object.
  */
-export default function makePropTypesAst(propTypeData) {
+export function makePropTypesAstForPropTypesAssignment(propTypeData) {
   if (propTypeData.type === 'shape-intersect-runtime') {
     // For top-level usage, e.g. Foo.proptype, return
     // an expression returning an object.
@@ -25,13 +25,47 @@ export default function makePropTypesAst(propTypeData) {
   else if (propTypeData.type === 'shape') {
     return makeObjectAstForShape(propTypeData);
   }
-  else {
-    // Required to handle non-object exports.
-    return makePropType(propTypeData);
+  else if (propTypeData.type === 'raw') {
+    return makeObjectAstForRaw(propTypeData);
   }
 };
 
 
+/**
+ * Top-level function to generate prop-types AST.
+ *
+ * This will return an expression suitable for exporting.
+ *
+ * This function is similar to makePropTypesAstForPropTypesAssignment, except
+ * that you may export non-object expressions.
+ *
+ * Any items not handled by makePropTypesAstForPropTypesAssignment will be returned
+ * as an AST invoking the corresponding function from the prop-types package.
+ *
+ * @param propTypeData Intermediate representation
+ * @returns {*} AST for expression resulting in object or function
+ */
+export function makePropTypesAstForExport(propTypeData) {
+  let ast = makePropTypesAstForPropTypesAssignment(propTypeData);
+  if (ast == null) {
+    ast = makePropType(propTypeData);
+  }
+  return ast;
+};
+
+
+function makeObjectAstForRaw(propTypeSpec, propTypeObjects) {
+  let propTypeObject = t.identifier(propTypeSpec.value);
+
+  // This will just be a variable, referencing an import we
+  // generated above. This variable may contain prop-types.any,
+  // which will not work when used in an intersection.
+  const importNode = makePropTypeImportNode();
+  const anyNode = t.memberExpression(importNode, t.identifier('any'));
+  const testExpression = t.binaryExpression('===', propTypeObject, anyNode);
+  propTypeObject = t.conditionalExpression(testExpression, t.objectExpression([]), propTypeObject);
+  return propTypeObject;
+}
 /**
  * Generates AST for run-time merges involving either import variables,
  * local types (shape) and other run-time merges.
@@ -69,16 +103,7 @@ function makeObjectMergeAstForShapeIntersectRuntime(propTypeData) {
   const propTypeObjects = [];
   propTypeData.properties.forEach(propTypeSpec => {
     if (propTypeSpec.type === 'raw') {
-      let propTypeObject = t.identifier(propTypeSpec.value);
-
-      // This will just be a variable, referencing an import we
-      // generated above. This variable may contain prop-types.any,
-      // which will not work when used in an intersection.
-      const importNode = makePropTypeImportNode();
-      const anyNode = t.memberExpression(importNode, t.identifier('any'));
-      const testExpression = t.binaryExpression('===', propTypeObject, anyNode);
-      propTypeObject = t.conditionalExpression(testExpression, t.objectExpression([]), propTypeObject);
-      propTypeObjects.push(propTypeObject);
+      propTypeObjects.push(makeObjectAstForRaw(propTypeSpec));
 
     }
     else if (propTypeSpec.type === 'shape') {
