@@ -24,7 +24,8 @@ export default function makePropTypesAst(propTypeData) {
   }
   else if (propTypeData.type === 'shape') {
     return makeObjectAstForShape(propTypeData);
-  } else {
+  }
+  else {
     // Required to handle non-object exports.
     return makePropType(propTypeData);
   }
