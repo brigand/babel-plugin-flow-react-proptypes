@@ -28,15 +28,9 @@ const convertNodeToPropTypes = node => convertToPropTypes(
 );
 
 const getPropsForTypeAnnotation = typeAnnotation => {
-  const typeAnnotationReference = typeAnnotation.id && typeAnnotation.id.name;
   let props = null;
-  if (typeAnnotationReference) {
-    props = internalTypes[typeAnnotationReference] || importedTypes[typeAnnotationReference];
-    if (!props) {
-      $debug(`Did not find type annotation for reference ${typeAnnotationReference}`);
-    }
-  }
-  else if (typeAnnotation.properties || typeAnnotation.type === 'GenericTypeAnnotation'
+
+  if (typeAnnotation.properties || typeAnnotation.type === 'GenericTypeAnnotation'
       || typeAnnotation.type === 'IntersectionTypeAnnotation'
       || typeAnnotation.type === 'AnyTypeAnnotation') {
     props = convertNodeToPropTypes(typeAnnotation);
@@ -107,17 +101,6 @@ module.exports = function flowReactPropTypes(babel) {
 
     if (!props) {
       throw new Error(`Did not find type annotation for ${name}`);
-    }
-
-
-    if (!props.properties) {
-      // Bail out if we don't have any properties. This will be the case if
-      // we have an imported PropType, like:
-      // import type { T } from '../types';
-      // const C = (props: T) => <div>{props.name}</div>;
-
-      // TODO: this case is still handled elsewhere, correct?
-      return;
     }
 
     const propTypesAST = makePropTypesAst(props);

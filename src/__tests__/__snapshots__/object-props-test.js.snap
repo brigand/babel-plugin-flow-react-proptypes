@@ -3,5 +3,6 @@ exports[`test object-props 1`] = `
 
 var Component = function Component(props) {
   return React.createElement(\"div\", null);
-};"
+};
+Component.propTypes = require(\"prop-types\").object;"
 `;

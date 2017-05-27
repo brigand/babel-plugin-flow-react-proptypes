@@ -46,5 +46,6 @@ var Test = function (_Component) {
   return Test;
 }(_react.Component);
 
+Test.propTypes = typeof babelPluginFlowReactPropTypes_proptype_Data === \'function\' ? babelPluginFlowReactPropTypes_proptype_Data : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_Data);
 exports.default = Test;"
 `;

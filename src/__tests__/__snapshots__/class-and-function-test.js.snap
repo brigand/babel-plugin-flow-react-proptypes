@@ -46,5 +46,6 @@ exports.default = TaskGridHeader;
 
 var glyph = function glyph(param) {
     return _react2.default.createElement(\'div\', null);
-};"
+};
+glyph.propTypes = require(\'prop-types\').any;"
 `;
