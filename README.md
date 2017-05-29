@@ -1,3 +1,5 @@
+DON'T MERGE THIS
+
 A babel plugin to generate React PropTypes definitions from Flow type declarations.
 
 [![build status](https://img.shields.io/travis/brigand/babel-plugin-flow-react-proptypes/master.svg?style=flat-square)](https://travis-ci.org/brigand/babel-plugin-flow-react-proptypes)
