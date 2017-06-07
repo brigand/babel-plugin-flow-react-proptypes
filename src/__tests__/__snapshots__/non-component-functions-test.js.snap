@@ -1,5 +1,7 @@
-exports[`test function-types 1`] = `
-"\"use strict\";
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`function-types 1`] = `
+"\\"use strict\\";
 
 var NotComponent = function NotComponent(x, y) {
   return x + y;

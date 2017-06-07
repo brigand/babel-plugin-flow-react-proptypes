@@ -1,22 +1,24 @@
-exports[`test stateless-arrow-body-without-jsx 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`stateless-arrow-body-without-jsx 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 
-var React = require(\'react\');
+var React = require('react');
 
 var arrowFunctionWithBody = function arrowFunctionWithBody() {
   return window.console;
 };
 
 var Foo = function Foo(props) {
-  return React.createElement(\'div\', null, props.x);
+  return React.createElement('div', null, props.x);
 };
 
 Foo.propTypes = {
-  x: require(\'prop-types\').oneOf([\'option1\', \'option2\'])
+  x: require('prop-types').oneOf(['option1', 'option2'])
 };
 exports.default = Foo;"
 `;

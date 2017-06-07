@@ -1,7 +1,9 @@
-exports[`test export-union-type 1`] = `
-"\"use strict\";
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-if (typeof exports !== \"undefined\") Object.defineProperty(exports, \"babelPluginFlowReactPropTypes_proptype_A\", {
-  value: require(\"prop-types\").oneOf([\"option1\", \"option2\"])
+exports[`export-union-type 1`] = `
+"\\"use strict\\";
+
+if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_A\\", {
+  value: require(\\"prop-types\\").oneOf([\\"option1\\", \\"option2\\"])
 });"
 `;

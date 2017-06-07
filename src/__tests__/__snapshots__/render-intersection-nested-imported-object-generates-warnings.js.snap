@@ -1,6 +1,8 @@
-exports[`test intersection-with-imported-object-generates-warnings: No warnings, all props given correctly 1`] = `Array []`;
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test intersection-with-imported-object-generates-warnings: invalid value given for key quy.baz 1`] = `
+exports[`intersection-with-imported-object-generates-warnings: No warnings, all props given correctly 1`] = `Array []`;
+
+exports[`intersection-with-imported-object-generates-warnings: invalid value given for key quy.baz 1`] = `
 Array [
   Array [
     "Warning: Failed prop type: Invalid prop \`quy.baz\` of type \`number\` supplied to \`C\`, expected \`string\`.
@@ -9,7 +11,7 @@ Array [
 ]
 `;
 
-exports[`test intersection-with-imported-object-generates-warnings: no prop types given 1`] = `
+exports[`intersection-with-imported-object-generates-warnings: no prop types given 1`] = `
 Array [
   Array [
     "Warning: Failed prop type: The prop \`qux\` is marked as required in \`C\`, but its value is \`undefined\`.
@@ -42,7 +44,7 @@ Array [
 ]
 `;
 
-exports[`test intersection-with-imported-object-generates-warnings: null given for nested shape quy 1`] = `
+exports[`intersection-with-imported-object-generates-warnings: null given for nested shape quy 1`] = `
 Array [
   Array [
     "Warning: Failed prop type: The prop \`quy\` is marked as required in \`C\`, but its value is \`null\`.
@@ -51,7 +53,7 @@ Array [
 ]
 `;
 
-exports[`test intersection-with-imported-object-generates-warnings: test deeper nested type quz.bar: specified with wrong type  1`] = `
+exports[`intersection-with-imported-object-generates-warnings: test deeper nested type quz.bar: specified with wrong type  1`] = `
 Array [
   Array [
     "Warning: Failed prop type: Invalid prop \`quz.bar.baz\` of type \`number\` supplied to \`C\`, expected \`string\`.
@@ -60,7 +62,7 @@ Array [
 ]
 `;
 
-exports[`test intersection-with-imported-object-generates-warnings: test deeper nested type quz: missing bar: TestType  1`] = `
+exports[`intersection-with-imported-object-generates-warnings: test deeper nested type quz: missing bar: TestType  1`] = `
 Array [
   Array [
     "Warning: Failed prop type: The prop \`quz.bar\` is marked as required in \`C\`, but its value is \`undefined\`.

@@ -1,15 +1,17 @@
-exports[`test import-object 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }
+exports[`import-object 1`] = `
+"'use strict';
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn\'t been initialised - super() hasn\'t been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return call && (typeof call === \\"object\\" || typeof call === \\"function\\") ? call : self; }
 
-var babelPluginFlowReactPropTypes_proptype_NamedType = require(\'./foo\').babelPluginFlowReactPropTypes_proptype_NamedType || require(\'prop-types\').any;
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var babelPluginFlowReactPropTypes_proptype_DefaultType = require(\'./bar\').babelPluginFlowReactPropTypes_proptype_DefaultType || require(\'prop-types\').any;
+var babelPluginFlowReactPropTypes_proptype_NamedType = require('./foo').babelPluginFlowReactPropTypes_proptype_NamedType || require('prop-types').any;
+
+var babelPluginFlowReactPropTypes_proptype_DefaultType = require('./bar').babelPluginFlowReactPropTypes_proptype_DefaultType || require('prop-types').any;
 
 var C = function (_React$Component) {
   _inherits(C, _React$Component);
@@ -24,12 +26,12 @@ var C = function (_React$Component) {
 }(React.Component);
 
 C.propTypes = {
-  an_imported_named_type: typeof babelPluginFlowReactPropTypes_proptype_NamedType === \'function\' ? babelPluginFlowReactPropTypes_proptype_NamedType : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_NamedType).isRequired,
-  an_imported_default_type: typeof babelPluginFlowReactPropTypes_proptype_DefaultType === \'function\' ? babelPluginFlowReactPropTypes_proptype_DefaultType : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_DefaultType).isRequired,
-  optional_property: typeof babelPluginFlowReactPropTypes_proptype_NamedType === \'function\' ? babelPluginFlowReactPropTypes_proptype_NamedType : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_NamedType),
-  can_be_null_property: typeof babelPluginFlowReactPropTypes_proptype_DefaultType === \'function\' ? babelPluginFlowReactPropTypes_proptype_DefaultType : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_DefaultType),
-  a_global_type: typeof Date === \'function\' ? require(\'prop-types\').instanceOf(Date).isRequired : require(\'prop-types\').any.isRequired,
-  a_undefined_type: typeof FooBarBaz === \'function\' ? require(\'prop-types\').instanceOf(FooBarBaz).isRequired : require(\'prop-types\').any.isRequired
+  an_imported_named_type: typeof babelPluginFlowReactPropTypes_proptype_NamedType === 'function' ? babelPluginFlowReactPropTypes_proptype_NamedType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_NamedType).isRequired,
+  an_imported_default_type: typeof babelPluginFlowReactPropTypes_proptype_DefaultType === 'function' ? babelPluginFlowReactPropTypes_proptype_DefaultType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_DefaultType).isRequired,
+  optional_property: typeof babelPluginFlowReactPropTypes_proptype_NamedType === 'function' ? babelPluginFlowReactPropTypes_proptype_NamedType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_NamedType),
+  can_be_null_property: typeof babelPluginFlowReactPropTypes_proptype_DefaultType === 'function' ? babelPluginFlowReactPropTypes_proptype_DefaultType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_DefaultType),
+  a_global_type: typeof Date === 'function' ? require('prop-types').instanceOf(Date).isRequired : require('prop-types').any.isRequired,
+  a_undefined_type: typeof FooBarBaz === 'function' ? require('prop-types').instanceOf(FooBarBaz).isRequired : require('prop-types').any.isRequired
 };
 ;"
 `;

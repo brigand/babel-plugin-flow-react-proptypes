@@ -4,3 +4,5 @@ node_modules
 npm-debug.log
 .DS_Store
 src/__tests__/lib/test-types.js.transpiled
+yarn.lock
+coverage

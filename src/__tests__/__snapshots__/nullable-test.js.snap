@@ -1,17 +1,19 @@
-exports[`test nullable 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`nullable 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn\'t been initialised - super() hasn\'t been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return call && (typeof call === \\"object\\" || typeof call === \\"function\\") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = require(\'react\');
+var React = require('react');
 
 var Foo = function (_React$Component) {
   _inherits(Foo, _React$Component);
@@ -26,7 +28,7 @@ var Foo = function (_React$Component) {
 }(React.Component);
 
 Foo.propTypes = {
-  foo: require(\'prop-types\').string
+  foo: require('prop-types').string
 };
 exports.default = Foo;"
 `;

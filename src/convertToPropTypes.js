@@ -24,7 +24,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
   }
   else if (node.type === 'FunctionTypeAnnotation') resultPropType = {type: 'func'};
   else if (node.type === 'AnyTypeAnnotation') resultPropType = {type: 'any'};
-  else if (node.type === 'ExistentialTypeParam') resultPropType = {type: 'any'};
+  else if (node.type === 'ExistsTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'MixedTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'TypeofTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'NumberTypeAnnotation') resultPropType = {type: 'number'};
@@ -132,7 +132,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
   }
   else if (node.type in {
     'StringLiteralTypeAnnotation': 0,
-    'NumericLiteralTypeAnnotation': 0,
+    'NumberLiteralTypeAnnotation': 0,
     'BooleanLiteralTypeAnnotation': 0,
     'NullLiteralTypeAnnotation': 0,
   }) {

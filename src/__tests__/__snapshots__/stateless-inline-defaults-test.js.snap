@@ -1,29 +1,31 @@
-exports[`test stateless-inline-defaults 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`stateless-inline-defaults 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 exports.default = Foo;
 
-var React = require(\'react\');
+var React = require('react');
 
 function Foo(_ref) {
   var _ref$x = _ref.x,
       x = _ref$x === undefined ? 1 : _ref$x,
       _ref$y = _ref.y,
-      y = _ref$y === undefined ? \'foo\' : _ref$y;
+      y = _ref$y === undefined ? 'foo' : _ref$y;
 
   React.createElement(
-    \'div\',
+    'div',
     null,
     x,
-    \'/\',
+    '/',
     y
   );
 }
 Foo.propTypes = {
-  x: require(\'prop-types\').number,
-  y: require(\'prop-types\').string
+  x: require('prop-types').number,
+  y: require('prop-types').string
 };"
 `;

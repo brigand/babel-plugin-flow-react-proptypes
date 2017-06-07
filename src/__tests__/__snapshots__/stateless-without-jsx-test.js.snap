@@ -1,18 +1,20 @@
-exports[`test stateless-without-jsx 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`stateless-without-jsx 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 
-var React = require(\'react\');
+var React = require('react');
 
 var Foo = function Foo(props) {
-  React.createElement(\'div\', null, props.x);
+  React.createElement('div', null, props.x);
 };
 
 Foo.propTypes = {
-  x: require(\'prop-types\').number
+  x: require('prop-types').number
 };
 exports.default = Foo;"
 `;

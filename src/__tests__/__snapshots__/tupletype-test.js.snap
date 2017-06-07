@@ -1,18 +1,20 @@
-exports[`test tupletype 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`tupletype 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 exports.default = Foo;
 
-var React = require(\'react\');
+var React = require('react');
 
 function Foo(props) {
-  React.createElement(\'div\', null);
+  React.createElement('div', null);
 }
 Foo.propTypes = {
-  an_optional_string: require(\'prop-types\').string,
-  tupletype: require(\'prop-types\').arrayOf(require(\'prop-types\').any).isRequired
+  an_optional_string: require('prop-types').string,
+  tupletype: require('prop-types').arrayOf(require('prop-types').any).isRequired
 };"
 `;

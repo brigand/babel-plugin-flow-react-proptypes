@@ -1,23 +1,25 @@
-exports[`test intersection-exported-type-alias-unexported-object-literal 1`] = `
-"\"use strict\";
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`intersection-exported-type-alias-unexported-object-literal 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn\'t been initialised - super() hasn\'t been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return call && (typeof call === \\"object\\" || typeof call === \\"function\\") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = require(\'react\');
+var React = require('react');
 
-var babelPluginFlowReactPropTypes_proptype_ThirdNamedType = require(\"./types\").babelPluginFlowReactPropTypes_proptype_ThirdNamedType || require(\"prop-types\").any;
+var babelPluginFlowReactPropTypes_proptype_ThirdNamedType = require(\\"./types\\").babelPluginFlowReactPropTypes_proptype_ThirdNamedType || require(\\"prop-types\\").any;
 
-var babelPluginFlowReactPropTypes_proptype_OtherNamedType = require(\"./types\").babelPluginFlowReactPropTypes_proptype_OtherNamedType || require(\"prop-types\").any;
+var babelPluginFlowReactPropTypes_proptype_OtherNamedType = require(\\"./types\\").babelPluginFlowReactPropTypes_proptype_OtherNamedType || require(\\"prop-types\\").any;
 
-var babelPluginFlowReactPropTypes_proptype_NamedType = require(\"./types\").babelPluginFlowReactPropTypes_proptype_NamedType || require(\"prop-types\").any;
+var babelPluginFlowReactPropTypes_proptype_NamedType = require(\\"./types\\").babelPluginFlowReactPropTypes_proptype_NamedType || require(\\"prop-types\\").any;
 
 var D = function (_React$Component) {
   _inherits(D, _React$Component);
@@ -31,13 +33,13 @@ var D = function (_React$Component) {
   return D;
 }(React.Component);
 
-D.propTypes = Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\"prop-types\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, {
-  foo: require(\"prop-types\").number.isRequired,
-  bar: typeof babelPluginFlowReactPropTypes_proptype_NamedType === \"function\" ? babelPluginFlowReactPropTypes_proptype_NamedType : require(\"prop-types\").shape(babelPluginFlowReactPropTypes_proptype_NamedType).isRequired,
-  baz: require(\"prop-types\").shape(Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\"prop-types\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, babelPluginFlowReactPropTypes_proptype_OtherNamedType === require(\"prop-types\").any ? {} : babelPluginFlowReactPropTypes_proptype_OtherNamedType, {
-    foo: require(\"prop-types\").oneOf([\"number\"]).isRequired,
-    bar: require(\"prop-types\").shape(Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\"prop-types\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, babelPluginFlowReactPropTypes_proptype_OtherNamedType === require(\"prop-types\").any ? {} : babelPluginFlowReactPropTypes_proptype_OtherNamedType)).isRequired
-  }, babelPluginFlowReactPropTypes_proptype_ThirdNamedType === require(\"prop-types\").any ? {} : babelPluginFlowReactPropTypes_proptype_ThirdNamedType)).isRequired
+D.propTypes = Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, {
+  foo: require(\\"prop-types\\").number.isRequired,
+  bar: typeof babelPluginFlowReactPropTypes_proptype_NamedType === \\"function\\" ? babelPluginFlowReactPropTypes_proptype_NamedType : require(\\"prop-types\\").shape(babelPluginFlowReactPropTypes_proptype_NamedType).isRequired,
+  baz: require(\\"prop-types\\").shape(Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, babelPluginFlowReactPropTypes_proptype_OtherNamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_OtherNamedType, {
+    foo: require(\\"prop-types\\").oneOf([\\"number\\"]).isRequired,
+    bar: require(\\"prop-types\\").shape(Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, babelPluginFlowReactPropTypes_proptype_OtherNamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_OtherNamedType)).isRequired
+  }, babelPluginFlowReactPropTypes_proptype_ThirdNamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_ThirdNamedType)).isRequired
 });
 ;
 

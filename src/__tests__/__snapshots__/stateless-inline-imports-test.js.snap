@@ -1,20 +1,22 @@
-exports[`test stateless-inline-imports 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-var _react = require(\'react\');
+exports[`stateless-inline-imports 1`] = `
+"'use strict';
+
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_T = require(\'../types\').babelPluginFlowReactPropTypes_proptype_T || require(\'prop-types\').any;
+var babelPluginFlowReactPropTypes_proptype_T = require('../types').babelPluginFlowReactPropTypes_proptype_T || require('prop-types').any;
 
 var C = function C(props) {
   _react2.default.createElement(
-    \'div\',
+    'div',
     null,
     props.name
   );
 };
-C.propTypes = babelPluginFlowReactPropTypes_proptype_T === require(\'prop-types\').any ? {} : babelPluginFlowReactPropTypes_proptype_T;"
+C.propTypes = babelPluginFlowReactPropTypes_proptype_T === require('prop-types').any ? {} : babelPluginFlowReactPropTypes_proptype_T;"
 `;

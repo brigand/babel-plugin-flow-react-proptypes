@@ -1,4 +1,6 @@
-exports[`test intersection-with-imported-object-generates-warnings 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`intersection-with-imported-object-generates-warnings 1`] = `
 Array [
   Array [
     "Warning: Failed prop type: The prop \`baz\` is marked as required in \`C\`, but its value is \`undefined\`.

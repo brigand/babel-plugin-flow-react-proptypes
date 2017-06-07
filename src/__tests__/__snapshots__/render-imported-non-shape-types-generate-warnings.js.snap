@@ -1,6 +1,8 @@
-exports[`test imported-non-shape-generates-warnings: correct types, no warning types given 1`] = `Array []`;
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test imported-non-shape-generates-warnings: incorrect types given 1`] = `
+exports[`imported-non-shape-generates-warnings: correct types, no warning types given 1`] = `Array []`;
+
+exports[`imported-non-shape-generates-warnings: incorrect types given 1`] = `
 Array [
   Array [
     "Warning: Failed prop type: Invalid prop \`stringValue\` of type \`number\` supplied to \`C\`, expected \`string\`.
@@ -11,10 +13,10 @@ Array [
     in C",
   ],
   Array [
-    "Warning: Failed prop type: Invalid prop \`enumStringValue\` of value \`incorrect\` supplied to \`C\`, expected one of [\"yes\",\"no\"].
+    "Warning: Failed prop type: Invalid prop \`enumStringValue\` of value \`incorrect\` supplied to \`C\`, expected one of [\\"yes\\",\\"no\\"].
     in C",
   ],
 ]
 `;
 
-exports[`test imported-non-shape-generates-warnings: no props given 1`] = `Array []`;
+exports[`imported-non-shape-generates-warnings: no props given 1`] = `Array []`;

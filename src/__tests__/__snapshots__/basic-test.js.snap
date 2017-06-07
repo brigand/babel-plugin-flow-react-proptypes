@@ -1,25 +1,27 @@
-exports[`test basic 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`basic 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn\'t been initialised - super() hasn\'t been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return call && (typeof call === \\"object\\" || typeof call === \\"function\\") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = require(\'react\');
+var React = require('react');
 
-if (typeof exports !== \'undefined\') Object.defineProperty(exports, \'babelPluginFlowReactPropTypes_proptype_Qux\', {
+if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_Qux', {
   value: {
-    baz: require(\'prop-types\').oneOf([\'literal\']).isRequired
+    baz: require('prop-types').oneOf(['literal']).isRequired
   }
 });
 
-var babelPluginFlowReactPropTypes_proptype_SomeExternalType = require(\'./types\').babelPluginFlowReactPropTypes_proptype_SomeExternalType || require(\'prop-types\').any;
+var babelPluginFlowReactPropTypes_proptype_SomeExternalType = require('./types').babelPluginFlowReactPropTypes_proptype_SomeExternalType || require('prop-types').any;
 
 var Foo = function (_React$Component) {
   _inherits(Foo, _React$Component);
@@ -34,37 +36,37 @@ var Foo = function (_React$Component) {
 }(React.Component);
 
 Foo.propTypes = {
-  an_optional_string: require(\'prop-types\').string,
-  a_number: require(\'prop-types\').number.isRequired,
-  a_boolean: require(\'prop-types\').bool.isRequired,
-  a_generic_object: require(\'prop-types\').object.isRequired,
-  array_of_strings: require(\'prop-types\').arrayOf(require(\'prop-types\').string).isRequired,
-  instance_of_Bar: typeof Bar === \'function\' ? require(\'prop-types\').instanceOf(Bar).isRequired : require(\'prop-types\').any.isRequired,
-  anything: require(\'prop-types\').any.isRequired,
-  mixed: require(\'prop-types\').any.isRequired,
-  one_of: require(\'prop-types\').oneOf([\'QUACK\', \'BARK\', 5]).isRequired,
-  one_of_type: require(\'prop-types\').oneOfType([require(\'prop-types\').number, require(\'prop-types\').string]).isRequired,
-  nested_object_level_1: require(\'prop-types\').shape({
-    string_property_1: require(\'prop-types\').string.isRequired,
-    nested_object_level_2: require(\'prop-types\').shape({
-      nested_object_level_3: require(\'prop-types\').shape({
-        string_property_3: require(\'prop-types\').string.isRequired
+  an_optional_string: require('prop-types').string,
+  a_number: require('prop-types').number.isRequired,
+  a_boolean: require('prop-types').bool.isRequired,
+  a_generic_object: require('prop-types').object.isRequired,
+  array_of_strings: require('prop-types').arrayOf(require('prop-types').string).isRequired,
+  instance_of_Bar: typeof Bar === 'function' ? require('prop-types').instanceOf(Bar).isRequired : require('prop-types').any.isRequired,
+  anything: require('prop-types').any.isRequired,
+  mixed: require('prop-types').any.isRequired,
+  one_of: require('prop-types').oneOf(['QUACK', 'BARK', 5]).isRequired,
+  one_of_type: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').string]).isRequired,
+  nested_object_level_1: require('prop-types').shape({
+    string_property_1: require('prop-types').string.isRequired,
+    nested_object_level_2: require('prop-types').shape({
+      nested_object_level_3: require('prop-types').shape({
+        string_property_3: require('prop-types').string.isRequired
       }).isRequired,
-      string_property_2: require(\'prop-types\').string.isRequired
+      string_property_2: require('prop-types').string.isRequired
     }).isRequired
   }).isRequired,
   should_error_if_provided: function should_error_if_provided(props, propName, componentName) {
-    if (props[propName] != null) return new Error(\'Invalid prop \`\' + propName + \'\` of value \`\' + value + \'\` passed to \`\' + componentName + \'\`. Expected undefined or null.\');
+    if (props[propName] != null) return new Error('Invalid prop \`' + propName + '\` of value \`' + value + '\` passed to \`' + componentName + '\`. Expected undefined or null.');
   },
-  intersection: require(\'prop-types\').shape({
-    foo: require(\'prop-types\').string.isRequired,
-    bar: require(\'prop-types\').number.isRequired,
-    baz: require(\'prop-types\').oneOf([\'literal\']).isRequired
+  intersection: require('prop-types').shape({
+    foo: require('prop-types').string.isRequired,
+    bar: require('prop-types').number.isRequired,
+    baz: require('prop-types').oneOf(['literal']).isRequired
   }).isRequired,
-  some_external_type: typeof babelPluginFlowReactPropTypes_proptype_SomeExternalType === \'function\' ? babelPluginFlowReactPropTypes_proptype_SomeExternalType : require(\'prop-types\').shape(babelPluginFlowReactPropTypes_proptype_SomeExternalType).isRequired,
-  some_external_type_intersection: require(\'prop-types\').shape(Object.assign({}, {
-    foo: require(\'prop-types\').string.isRequired
-  }, babelPluginFlowReactPropTypes_proptype_SomeExternalType === require(\'prop-types\').any ? {} : babelPluginFlowReactPropTypes_proptype_SomeExternalType)).isRequired
+  some_external_type: typeof babelPluginFlowReactPropTypes_proptype_SomeExternalType === 'function' ? babelPluginFlowReactPropTypes_proptype_SomeExternalType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_SomeExternalType).isRequired,
+  some_external_type_intersection: require('prop-types').shape(Object.assign({}, {
+    foo: require('prop-types').string.isRequired
+  }, babelPluginFlowReactPropTypes_proptype_SomeExternalType === require('prop-types').any ? {} : babelPluginFlowReactPropTypes_proptype_SomeExternalType)).isRequired
 };
 exports.default = Foo;"
 `;

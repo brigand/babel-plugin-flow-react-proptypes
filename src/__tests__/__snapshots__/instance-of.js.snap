@@ -1,17 +1,19 @@
-exports[`test instance-of 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-var _some_class = require(\'./some_class\');
+exports[`instance-of 1`] = `
+"'use strict';
+
+var _some_class = require('./some_class');
 
 var _some_class2 = _interopRequireDefault(_some_class);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn\'t been initialised - super() hasn\'t been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\\"this hasn't been initialised - super() hasn't been called\\"); } return call && (typeof call === \\"object\\" || typeof call === \\"function\\") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\\"Cannot call a class as a function\\"); } }
 
 var SomeOtherClass = function SomeOtherClass() {
   _classCallCheck(this, SomeOtherClass);
@@ -30,9 +32,9 @@ var MyComponent = function (_React$Component) {
 }(React.Component);
 
 MyComponent.propTypes = {
-  some_class: typeof _some_class2.default === \'function\' ? require(\'prop-types\').instanceOf(_some_class2.default).isRequired : require(\'prop-types\').any.isRequired,
-  some_other_class: typeof SomeOtherClass === \'function\' ? require(\'prop-types\').instanceOf(SomeOtherClass).isRequired : require(\'prop-types\').any.isRequired,
-  key_can_be_omitted: typeof _some_class2.default === \'function\' ? require(\'prop-types\').instanceOf(_some_class2.default) : require(\'prop-types\').any,
-  value_can_be_null: typeof SomeOtherClass === \'function\' ? require(\'prop-types\').instanceOf(SomeOtherClass) : require(\'prop-types\').any
+  some_class: typeof _some_class2.default === 'function' ? require('prop-types').instanceOf(_some_class2.default).isRequired : require('prop-types').any.isRequired,
+  some_other_class: typeof SomeOtherClass === 'function' ? require('prop-types').instanceOf(SomeOtherClass).isRequired : require('prop-types').any.isRequired,
+  key_can_be_omitted: typeof _some_class2.default === 'function' ? require('prop-types').instanceOf(_some_class2.default) : require('prop-types').any,
+  value_can_be_null: typeof SomeOtherClass === 'function' ? require('prop-types').instanceOf(SomeOtherClass) : require('prop-types').any
 };"
 `;

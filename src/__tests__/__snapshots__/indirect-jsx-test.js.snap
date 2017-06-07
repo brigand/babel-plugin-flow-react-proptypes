@@ -1,14 +1,16 @@
-exports[`test indirect-jsx 1`] = `
-"\"use strict\";
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`indirect-jsx 1`] = `
+"\\"use strict\\";
 
 var C = function C(props) {
   var el = null;
   if (true) {
-    el = React.createElement(\"div\", null);
+    el = React.createElement(\\"div\\", null);
   }
   return el;
 };
 C.propTypes = {
-  name: require(\"prop-types\").string.isRequired
+  name: require(\\"prop-types\\").string.isRequired
 };"
 `;

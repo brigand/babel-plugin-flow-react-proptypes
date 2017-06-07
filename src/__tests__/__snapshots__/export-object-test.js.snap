@@ -1,12 +1,14 @@
-exports[`test export-object 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-if (typeof exports !== \'undefined\') Object.defineProperty(exports, \'babelPluginFlowReactPropTypes_proptype_Foo\', {
+exports[`export-object 1`] = `
+"'use strict';
+
+if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_Foo', {
   value: {
-    a_string: require(\'prop-types\').string.isRequired
+    a_string: require('prop-types').string.isRequired
   }
 });
 
 
-console.log(\'test\');"
+console.log('test');"
 `;

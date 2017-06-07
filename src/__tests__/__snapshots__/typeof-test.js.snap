@@ -1,14 +1,16 @@
-exports[`test typeof 1`] = `
-"\'use strict\';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`typeof 1`] = `
+"'use strict';
 
 var ActionTypes = {
-  JUMP_TO: \'react-native/NavigationExperimental/tabs-jumpTo\'
+  JUMP_TO: 'react-native/NavigationExperimental/tabs-jumpTo'
 };
 
-if (typeof exports !== \'undefined\') Object.defineProperty(exports, \'babelPluginFlowReactPropTypes_proptype_JumpToAction\', {
+if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_JumpToAction', {
   value: {
-    type: require(\'prop-types\').any.isRequired,
-    index: require(\'prop-types\').number.isRequired
+    type: require('prop-types').any.isRequired,
+    index: require('prop-types').number.isRequired
   }
 });"
 `;

@@ -1,12 +1,14 @@
-exports[`test stateless-exports 1`] = `
-"\"use strict\";
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-Object.defineProperty(exports, \"__esModule\", {
+exports[`stateless-exports 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 exports.C2 = exports.C1 = undefined;
 
-var _react = require(\"react\");
+var _react = require(\\"react\\");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -15,17 +17,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var C1 = exports.C1 = function C1(_ref) {
   var m = _ref.m;
 
-  return _react2.default.createElement(\"div\", null);
+  return _react2.default.createElement(\\"div\\", null);
 };
+
 C1.propTypes = {
-  m: require(\"prop-types\").string.isRequired
+  m: require(\\"prop-types\\").string.isRequired
 };
 var C2 = exports.C2 = function C2(_ref2) {
   var m = _ref2.m;
 
-  return _react2.default.createElement(\"div\", null);
+  return _react2.default.createElement(\\"div\\", null);
 };
 C2.propTypes = {
-  m: require(\"prop-types\").string.isRequired
+  m: require(\\"prop-types\\").string.isRequired
 };"
 `;

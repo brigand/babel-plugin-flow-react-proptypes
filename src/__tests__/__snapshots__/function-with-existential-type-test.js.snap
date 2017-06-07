@@ -1,8 +1,10 @@
-exports[`test function-with-type-annotation 1`] = `
-"\"use strict\";
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`function-with-type-annotation 1`] = `
+"\\"use strict\\";
 
 var C = function C(props) {};
 C.propTypes = {
-  bar: require(\"prop-types\").any.isRequired
+  bar: require(\\"prop-types\\").any.isRequired
 };"
 `;
