@@ -37,7 +37,9 @@ Foo.propTypes = {
     }).isRequired
   }).isRequired,
   should_error_if_provided: function should_error_if_provided(props, propName, componentName) {
-    if (props[propName] != null) return new Error('Invalid prop \`' + propName + '\` of value \`' + value + '\` passed to \`' + componentName + '\`. Expected undefined or null.');
+    if (props[propName] != null) {
+      throw new Error('Invalid prop \`' + propName + '\` of value \`' + props[propName] + '\` passed to \`' + componentName + '\`. Expected undefined or null.');
+    }
   }
 };"
 `;

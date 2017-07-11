@@ -6,7 +6,9 @@ const USE_PROPTYPES_PACKAGE = true;
 
 const dontSetTemplate = template(`
 (props, propName, componentName) => {
-  if(props[propName] != null) return new Error(\`Invalid prop \\\`\${propName}\\\` of value \\\`\${value}\\\` passed to \\\`\${componentName\}\\\`. Expected undefined or null.\`);
+  if(props[propName] != null) {
+    throw new Error(\`Invalid prop \\\`\${propName}\\\` of value \\\`\${props[propName]}\\\` passed to \\\`\${componentName\}\\\`. Expected undefined or null.\`);
+  }
 }
 `);
 
