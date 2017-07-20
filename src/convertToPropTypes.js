@@ -1,5 +1,12 @@
 import {$debug, isExact, PLUGIN_NAME} from './util';
 
+function getObjectTypePropertyKey(node) {
+  if (node.key.type === 'StringLiteral') {
+    return `"${node.key.value}"`;
+  }
+  return node.key.name;
+}
+
 export default function convertToPropTypes(node, importedTypes, internalTypes) {
   $debug('convertToPropTypes', node);
   let resultPropType;
@@ -26,7 +33,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     resultPropType = {type: 'shape', properties, isExact: node.exact};
   }
   else if (node.type === 'ObjectTypeProperty') {
-    const key = node.key.name;
+    const key = getObjectTypePropertyKey(node);
     let value = node.value;
 
     // recurse
