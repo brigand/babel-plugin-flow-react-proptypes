@@ -144,7 +144,9 @@ module.exports = function flowReactPropTypes(babel) {
     if (!typeAnnotation) {
       $debug('Found stateless component without type definition');
     } else {
-      propsOrVar = exportedTypes[typeAnnotation.id.name] || getPropsForTypeAnnotation(typeAnnotation);
+      propsOrVar = typeAnnotation.id && exportedTypes[typeAnnotation.id.name] ?
+        exportedTypes[typeAnnotation.id.name] :
+        getPropsForTypeAnnotation(typeAnnotation);
     }
 
     if (propsOrVar) {

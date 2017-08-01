@@ -3,8 +3,10 @@
 exports[`export-union-type 1`] = `
 "\\"use strict\\";
 
+var babelPluginFlowReactPropTypes_proptype_A = require(\\"prop-types\\").oneOf([\\"option1\\", \\"option2\\"]);
+
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_A\\", {
-  value: require(\\"prop-types\\").oneOf([\\"option1\\", \\"option2\\"]),
+  value: babelPluginFlowReactPropTypes_proptype_A,
   configurable: true
 });"
 `;

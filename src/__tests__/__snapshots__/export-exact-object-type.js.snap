@@ -9,10 +9,11 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var babelPluginFlowReactPropTypes_proptype_VendorProps = {
+  test: require('prop-types').string.isRequired
+};
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_VendorProps', {
-  value: {
-    test: require('prop-types').string.isRequired
-  },
+  value: babelPluginFlowReactPropTypes_proptype_VendorProps,
   configurable: true
 });"
 `;

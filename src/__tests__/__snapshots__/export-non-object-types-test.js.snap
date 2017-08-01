@@ -3,8 +3,10 @@
 exports[`export-non-object-types 1`] = `
 "\\"use strict\\";
 
+var babelPluginFlowReactPropTypes_proptype_Answer = require(\\"prop-types\\").oneOf([\\"Yes\\", \\"No\\"]);
+
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_Answer\\", {
-  value: require(\\"prop-types\\").oneOf([\\"Yes\\", \\"No\\"]),
+  value: babelPluginFlowReactPropTypes_proptype_Answer,
   configurable: true
 });"
 `;

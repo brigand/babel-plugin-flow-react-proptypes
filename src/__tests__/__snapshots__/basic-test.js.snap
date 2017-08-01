@@ -15,10 +15,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== \\"function
 
 var React = require('react');
 
+var babelPluginFlowReactPropTypes_proptype_Qux = {
+  baz: require('prop-types').oneOf(['literal']).isRequired
+};
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_Qux', {
-  value: {
-    baz: require('prop-types').oneOf(['literal']).isRequired
-  },
+  value: babelPluginFlowReactPropTypes_proptype_Qux,
   configurable: true
 });
 

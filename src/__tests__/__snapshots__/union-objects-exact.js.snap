@@ -11,30 +11,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== \\"function
 
 var React = require('react');
 
-if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_ExactFooProps', {
-  value: {
-    someprop: require('prop-types').oneOfType([require('prop-types').shape({
-      a: require('prop-types').string.isRequired
-    }), require('prop-types').shape({
-      b: require('prop-types').number.isRequired,
-      __exact__: function __exact__(values, prop, displayName) {
-        var props = {
-          b: true
-        };
-        var extra = [];
+var babelPluginFlowReactPropTypes_proptype_ExactFooProps = {
+  someprop: require('prop-types').oneOfType([require('prop-types').shape({
+    a: require('prop-types').string.isRequired
+  }), require('prop-types').shape({
+    b: require('prop-types').number.isRequired,
+    __exact__: function __exact__(values, prop, displayName) {
+      var props = {
+        b: true
+      };
+      var extra = [];
 
-        for (var k in values) {
-          if (values.hasOwnProperty(k) && !props.hasOwnProperty(k)) {
-            extra.push(k);
-          }
-        }
-
-        if (extra.length > 0) {
-          return new Error('Invalid additional prop(s) ' + JSON.stringify(extra));
+      for (var k in values) {
+        if (values.hasOwnProperty(k) && !props.hasOwnProperty(k)) {
+          extra.push(k);
         }
       }
-    })]).isRequired
-  },
+
+      if (extra.length > 0) {
+        return new Error('Invalid additional prop(s) ' + JSON.stringify(extra));
+      }
+    }
+  })]).isRequired
+};
+if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_ExactFooProps', {
+  value: babelPluginFlowReactPropTypes_proptype_ExactFooProps,
   configurable: true
 });
 

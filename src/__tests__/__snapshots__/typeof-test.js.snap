@@ -7,11 +7,12 @@ var ActionTypes = {
   JUMP_TO: 'react-native/NavigationExperimental/tabs-jumpTo'
 };
 
+var babelPluginFlowReactPropTypes_proptype_JumpToAction = {
+  type: require('prop-types').any.isRequired,
+  index: require('prop-types').number.isRequired
+};
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_JumpToAction', {
-  value: {
-    type: require('prop-types').any.isRequired,
-    index: require('prop-types').number.isRequired
-  },
+  value: babelPluginFlowReactPropTypes_proptype_JumpToAction,
   configurable: true
 });"
 `;

@@ -15,11 +15,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var babelPluginFlowReactPropTypes_proptype_ExternalType = require('../types').babelPluginFlowReactPropTypes_proptype_ExternalType || require('prop-types').any;
 
+var babelPluginFlowReactPropTypes_proptype_T = {
+    flag: require('prop-types').bool.isRequired,
+    list: require('prop-types').arrayOf(typeof babelPluginFlowReactPropTypes_proptype_ExternalType === 'function' ? babelPluginFlowReactPropTypes_proptype_ExternalType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ExternalType)).isRequired
+};
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_T', {
-    value: {
-        flag: require('prop-types').bool.isRequired,
-        list: require('prop-types').arrayOf(typeof babelPluginFlowReactPropTypes_proptype_ExternalType === 'function' ? babelPluginFlowReactPropTypes_proptype_ExternalType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ExternalType)).isRequired
-    },
+    value: babelPluginFlowReactPropTypes_proptype_T,
     configurable: true
 });
 
@@ -41,9 +42,6 @@ var C = function C(_ref) {
     );
 };
 
-C.propTypes = {
-    flag: require('prop-types').bool.isRequired,
-    list: require('prop-types').arrayOf(typeof babelPluginFlowReactPropTypes_proptype_ExternalType === 'function' ? babelPluginFlowReactPropTypes_proptype_ExternalType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ExternalType)).isRequired
-};
+C.propTypes = babelPluginFlowReactPropTypes_proptype_T;
 exports.default = C;"
 `;

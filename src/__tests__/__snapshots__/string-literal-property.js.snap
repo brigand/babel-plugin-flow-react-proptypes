@@ -3,11 +3,12 @@
 exports[`string-literal-property 1`] = `
 "'use strict';
 
+var babelPluginFlowReactPropTypes_proptype_T = {
+  \\"read-only\\": require('prop-types').oneOf([true]).isRequired,
+  regular: require('prop-types').oneOf([true]).isRequired
+};
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_T', {
-  value: {
-    \\"read-only\\": require('prop-types').oneOf([true]).isRequired,
-    regular: require('prop-types').oneOf([true]).isRequired
-  },
+  value: babelPluginFlowReactPropTypes_proptype_T,
   configurable: true
 });"
 `;
