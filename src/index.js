@@ -13,6 +13,8 @@ let internalTypes = {};
 
 // maps between type alias to import alias
 let importedTypes = {};
+
+let exportedTypes = {};
 let suppress = false;
 const SUPPRESS_STRING = 'no babel-plugin-flow-react-proptypes';
 
@@ -45,21 +47,6 @@ const getPropsForTypeAnnotation = typeAnnotation => {
   return props;
 };
 
-const getFunctionalComponentTypeProps = path => {
-  // Check if this looks like a stateless react component with PropType reference:
-  const firstParam = path.node.params[0];
-  const typeAnnotation = firstParam
-    && firstParam.typeAnnotation
-    && firstParam.typeAnnotation.typeAnnotation;
-
-  if (!typeAnnotation) {
-    $debug('Found stateless component without type definition');
-    return;
-  }
-
-  return getPropsForTypeAnnotation(typeAnnotation);
-};
-
 module.exports = function flowReactPropTypes(babel) {
   const t = babel.types;
 
@@ -85,9 +72,9 @@ module.exports = function flowReactPropTypes(babel) {
      *
      *
      * @param path
-     * @param props
+     * @param propsOrVar - props or exported props variable reference
      */
-  const annotate = (path, props) => {
+  const annotate = (path, propsOrVar) => {
     let name;
     let targetPath;
 
@@ -102,21 +89,35 @@ module.exports = function flowReactPropTypes(babel) {
       targetPath = ['Program', 'BlockStatement'].indexOf(path.parent.type) >= 0 ? path : path.parentPath;
     }
 
-    if (!props) {
+    if (!propsOrVar) {
       throw new Error(`Did not find type annotation for ${name}`);
     }
 
-    const propTypesAST = makePropTypesAstForPropTypesAssignment(props);
-    if (propTypesAST == null) {
-      return;
+    let attachPropTypesAST
+    // if type was exported, use the declared variable
+    if (typeof propsOrVar === 'string'){
+      attachPropTypesAST = t.expressionStatement(
+        t.assignmentExpression(
+          '=',
+          t.memberExpression(t.identifier(name), t.identifier('propTypes')),
+          t.identifier(propsOrVar)
+        )
+      );
     }
-    const attachPropTypesAST = t.expressionStatement(
-      t.assignmentExpression(
-        '=',
-        t.memberExpression(t.identifier(name), t.identifier('propTypes')),
-        propTypesAST
-      )
-    );
+    // type was not exported, generate
+    else {
+      const propTypesAST = makePropTypesAstForPropTypesAssignment(propsOrVar);
+      if (propTypesAST == null) {
+        return;
+      }
+      attachPropTypesAST = t.expressionStatement(
+        t.assignmentExpression(
+          '=',
+          t.memberExpression(t.identifier(name), t.identifier('propTypes')),
+          propTypesAST
+        )
+      );
+    }
     targetPath.insertAfter(attachPropTypesAST);
   };
 
@@ -132,9 +133,22 @@ module.exports = function flowReactPropTypes(babel) {
     if (!isFunctionalReactComponent(path)) {
       return;
     }
-    const props = getFunctionalComponentTypeProps(path);
-    if (props) {
-      annotate(path, props);
+
+    // Check if this looks like a stateless react component with PropType reference:
+    const firstParam = path.node.params[0];
+    const typeAnnotation = firstParam
+      && firstParam.typeAnnotation
+      && firstParam.typeAnnotation.typeAnnotation;
+
+    let propsOrVar = null
+    if (!typeAnnotation) {
+      $debug('Found stateless component without type definition');
+    } else {
+      propsOrVar = exportedTypes[typeAnnotation.id.name] || getPropsForTypeAnnotation(typeAnnotation);
+    }
+
+    if (propsOrVar) {
+      annotate(path, propsOrVar);
     }
   };
 
@@ -143,6 +157,7 @@ module.exports = function flowReactPropTypes(babel) {
       Program(path, {opts}) {
         internalTypes = {};
         importedTypes = {};
+        exportedTypes = {};
         suppress = false;
         const directives = path.node.directives;
         if(directives && directives.length)  {
@@ -247,13 +262,28 @@ module.exports = function flowReactPropTypes(babel) {
 
         const propTypesAst = makePropTypesAstForExport(propTypes);
 
+        // create a variable for reuse
+        const exportedName = getExportNameForType(name);
+        exportedTypes[name] = exportedName;
+        const variableDeclarationAst = t.variableDeclaration(
+          'var',
+          [
+            t.variableDeclarator(
+              t.identifier(exportedName),
+              propTypesAst
+            )
+          ]
+        );
+        path.insertBefore(variableDeclarationAst);
+
+        // add the variable to the exports
         const exportAst = t.expressionStatement(t.callExpression(
           t.memberExpression(t.identifier('Object'), t.identifier('defineProperty')),
           [
             t.identifier('exports'),
             t.stringLiteral(getExportNameForType(name)),
             t.objectExpression([
-              t.objectProperty(t.identifier('value'), propTypesAst), // FIXME: this should be the ref to the var declaration created in makePropTypesAstForPropTypesAssignment
+              t.objectProperty(t.identifier('value'), t.identifier(exportedName)),
               t.objectProperty(t.identifier('configurable'), t.booleanLiteral(true)),
             ]),
           ]

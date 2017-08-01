@@ -51,7 +51,6 @@ export function makePropTypesAstForPropTypesAssignment(propTypeData) {
   else if (propTypeData.type === 'raw') {
     return makeObjectAstForRaw(propTypeData);
   }
-  // FIXME - this needs to create a variable with the output or return the existing one.
 };
 
 
