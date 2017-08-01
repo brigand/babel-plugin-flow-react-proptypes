@@ -93,7 +93,7 @@ module.exports = function flowReactPropTypes(babel) {
       throw new Error(`Did not find type annotation for ${name}`);
     }
 
-    let attachPropTypesAST
+    let attachPropTypesAST;
     // if type was exported, use the declared variable
     if (typeof propsOrVar === 'string'){
       attachPropTypesAST = t.expressionStatement(
@@ -140,10 +140,11 @@ module.exports = function flowReactPropTypes(babel) {
       && firstParam.typeAnnotation
       && firstParam.typeAnnotation.typeAnnotation;
 
-    let propsOrVar = null
+    let propsOrVar = null;
     if (!typeAnnotation) {
       $debug('Found stateless component without type definition');
-    } else {
+    }
+    else {
       propsOrVar = typeAnnotation.id && exportedTypes[typeAnnotation.id.name] ?
         exportedTypes[typeAnnotation.id.name] :
         getPropsForTypeAnnotation(typeAnnotation);
