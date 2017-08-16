@@ -373,9 +373,11 @@ function getPropsTypeParam(node) {
   const superTypes = node.superTypeParameters;
   if (superTypes.params.length === 2) {
     return superTypes.params[0];
-  } else if (superTypes.params.length === 3) {
+  }
+  else if (superTypes.params.length === 3) {
     return superTypes.params[1];
-  } else if (superTypes.length === 1) {
+  }
+  else if (superTypes.length === 1) {
     return superTypes.params[0];
   }
   return null;
