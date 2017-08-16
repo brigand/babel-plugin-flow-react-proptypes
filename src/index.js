@@ -218,7 +218,7 @@ module.exports = function flowReactPropTypes(babel) {
         });
 
         // super type parameter
-        const secondSuperParam = path.node.superTypeParameters && path.node.superTypeParameters.params[1];
+        const secondSuperParam = getPropsTypeParam(path.node);
         if (secondSuperParam && secondSuperParam.type === 'GenericTypeAnnotation') {
           const typeAliasName = secondSuperParam.id.name;
           const props = internalTypes[typeAliasName];
@@ -365,3 +365,19 @@ module.exports = function flowReactPropTypes(babel) {
     }
   };
 };
+
+
+function getPropsTypeParam(node) {
+  if (!node) return null;
+  if (!node.superTypeParameters) return null;
+  const superTypes = node.superTypeParameters;
+  if (superTypes.params.length === 2) {
+    return superTypes.params[0];
+  } else if (superTypes.params.length === 3) {
+    return superTypes.params[1];
+  } else if (superTypes.length === 1) {
+    return superTypes.params[0];
+  }
+  return null;
+}
+
