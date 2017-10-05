@@ -136,7 +136,7 @@ npm install --save-dev babel-plugin-flow-react-proptypes
 ```
 
 Also install the prop-types package. This is required for React `>=15.5.0`. For earlier React versions
-you can use version `0.21.0` of this plugin, which doesn't use the prop-types pacakge.
+you can use version `0.21.0` of this plugin, which doesn't use the prop-types package.
 
 ```sh
 npm install --save prop-types
@@ -195,8 +195,8 @@ In production, omitting props and minimizing bundle size can be done with the ad
 
 There are cases where a library wishes to `export type` making types available in `*.js.flow` shadow files,
 but these may have no other purpose during runtime.  If you wish to omit the corresponding export of
-the generated flow types, using this option with the 
-[transform-react-remove-prop-types](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types) 
+the generated flow types, using this option with the
+[transform-react-remove-prop-types](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types)
 plugin will allow for the smallest production bundle size.
 
 An example snippet from a `.babelrc`:
