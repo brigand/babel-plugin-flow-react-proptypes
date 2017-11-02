@@ -36,7 +36,8 @@ var babelPluginFlowReactPropTypes_proptype_ExactFooProps = {
 };
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_ExactFooProps', {
   value: babelPluginFlowReactPropTypes_proptype_ExactFooProps,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 
 var Foo = function (_React$Component) {

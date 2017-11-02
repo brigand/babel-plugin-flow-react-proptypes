@@ -7,6 +7,7 @@ var babelPluginFlowReactPropTypes_proptype_Answer = require(\\"prop-types\\").on
 
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_Answer\\", {
   value: babelPluginFlowReactPropTypes_proptype_Answer,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });"
 `;

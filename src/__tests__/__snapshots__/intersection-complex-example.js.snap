@@ -24,14 +24,16 @@ var babelPluginFlowReactPropTypes_proptype_T = {
 };
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_T\\", {
   value: babelPluginFlowReactPropTypes_proptype_T,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 var babelPluginFlowReactPropTypes_proptype_U = {
   bar: require(\\"prop-types\\").number.isRequired
 };
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_U\\", {
   value: babelPluginFlowReactPropTypes_proptype_U,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 var babelPluginFlowReactPropTypes_proptype_X = Object.assign({}, babelPluginFlowReactPropTypes_proptype_NamedType === require(\\"prop-types\\").any ? {} : babelPluginFlowReactPropTypes_proptype_NamedType, {
   a: typeof babelPluginFlowReactPropTypes_proptype_NamedType === \\"function\\" ? babelPluginFlowReactPropTypes_proptype_NamedType.isRequired ? babelPluginFlowReactPropTypes_proptype_NamedType.isRequired : babelPluginFlowReactPropTypes_proptype_NamedType : require(\\"prop-types\\").shape(babelPluginFlowReactPropTypes_proptype_NamedType).isRequired,
@@ -43,7 +45,8 @@ var babelPluginFlowReactPropTypes_proptype_X = Object.assign({}, babelPluginFlow
 });
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_X\\", {
   value: babelPluginFlowReactPropTypes_proptype_X,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 
 var C = function (_React$Component) {

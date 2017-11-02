@@ -299,6 +299,7 @@ module.exports = function flowReactPropTypes(babel) {
               t.objectExpression([
                 t.objectProperty(t.identifier('value'), t.identifier(exportedName)),
                 t.objectProperty(t.identifier('configurable'), t.booleanLiteral(true)),
+                t.objectProperty(t.identifier('enumerable'), t.booleanLiteral(true)),
               ]),
             ]
           ));

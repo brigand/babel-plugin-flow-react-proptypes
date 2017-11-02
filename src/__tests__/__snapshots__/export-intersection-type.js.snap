@@ -21,7 +21,8 @@ var babelPluginFlowReactPropTypes_proptype_V = {
 };
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_V', {
   value: babelPluginFlowReactPropTypes_proptype_V,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 
 var C = function (_React$Component) {

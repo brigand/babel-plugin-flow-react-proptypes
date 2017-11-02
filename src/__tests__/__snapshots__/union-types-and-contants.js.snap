@@ -19,7 +19,8 @@ var babelPluginFlowReactPropTypes_proptype_U = require('prop-types').oneOfType([
 
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_U', {
   value: babelPluginFlowReactPropTypes_proptype_U,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 
 var Foo = function (_React$Component) {

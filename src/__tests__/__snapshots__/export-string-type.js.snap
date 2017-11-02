@@ -7,13 +7,15 @@ var babelPluginFlowReactPropTypes_proptype_T = require(\\"prop-types\\").string;
 
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_T\\", {
   value: babelPluginFlowReactPropTypes_proptype_T,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });
 
 var babelPluginFlowReactPropTypes_proptype_TOptional = require(\\"prop-types\\").string;
 
 if (typeof exports !== \\"undefined\\") Object.defineProperty(exports, \\"babelPluginFlowReactPropTypes_proptype_TOptional\\", {
   value: babelPluginFlowReactPropTypes_proptype_TOptional,
-  configurable: true
+  configurable: true,
+  enumerable: true
 });"
 `;
