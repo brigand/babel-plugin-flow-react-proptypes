@@ -5,6 +5,10 @@ exports[`function-with-type-annotation 1`] = `
 
 var C = function C(props) {};
 C.propTypes = {
-  bar: require(\\"prop-types\\").any.isRequired
+  bar: function bar(props, propName, componentName) {
+    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+      throw new Error(\\"Prop \`\\" + propName + \\"\` has type 'any', but was not provided to \`\\" + componentName + \\"\`. Pass undefined or any other value.\\");
+    }
+  }
 };"
 `;

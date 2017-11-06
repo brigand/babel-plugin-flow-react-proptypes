@@ -8,7 +8,11 @@ var ActionTypes = {
 };
 
 var babelPluginFlowReactPropTypes_proptype_JumpToAction = {
-  type: require('prop-types').any.isRequired,
+  type: function type(props, propName, componentName) {
+    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+    }
+  },
   index: require('prop-types').number.isRequired
 };
 if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_JumpToAction', {

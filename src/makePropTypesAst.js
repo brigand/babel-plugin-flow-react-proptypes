@@ -27,6 +27,14 @@ const exactTemplate = template(`
 }
 `);
 
+const anyTemplate = template(`
+(props, propName, componentName) => {
+  if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+    throw new Error(\`Prop \\\`\${propName}\\\` has type 'any', but was not provided to \\\`\${componentName\}\\\`. Pass undefined or any other value.\`);
+  }
+}
+`);
+
 /**
  * Top-level function to generate prop-types AST.
  *
@@ -261,9 +269,13 @@ function makePropType(data, isExact) {
   let node = makePropTypeImportNode();
   let markFullExpressionAsRequired = true;
 
-  if (method === 'any' || method === 'string' || method === 'number' || method === 'bool' || method === 'object' ||
+  if (method === 'string' || method === 'number' || method === 'bool' || method === 'object' ||
       method === 'array' || method === 'func' || method === 'node') {
     node = t.memberExpression(node, t.identifier(method));
+  }
+  else if (method === 'any') {
+    markFullExpressionAsRequired = false;
+    node = anyTemplate().expression;
   }
   else if (method === 'raw') {
     markFullExpressionAsRequired = false;

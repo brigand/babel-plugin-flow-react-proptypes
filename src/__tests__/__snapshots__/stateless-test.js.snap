@@ -24,7 +24,11 @@ Foo.propTypes = {
   a_generic_object: require('prop-types').object.isRequired,
   array_of_strings: require('prop-types').arrayOf(require('prop-types').string).isRequired,
   instance_of_Bar: typeof Bar === 'function' ? require('prop-types').instanceOf(Bar).isRequired : require('prop-types').any.isRequired,
-  anything: require('prop-types').any.isRequired,
+  anything: function anything(props, propName, componentName) {
+    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+    }
+  },
   one_of: require('prop-types').oneOf(['QUACK', 'BARK', 5]).isRequired,
   onw_of_type: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').string]).isRequired,
   nested_object_level_1: require('prop-types').shape({

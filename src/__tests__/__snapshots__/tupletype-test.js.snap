@@ -15,6 +15,10 @@ function Foo(props) {
 }
 Foo.propTypes = {
   an_optional_string: require('prop-types').string,
-  tupletype: require('prop-types').arrayOf(require('prop-types').any).isRequired
+  tupletype: require('prop-types').arrayOf(function (props, propName, componentName) {
+    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+    }
+  }).isRequired
 };"
 `;

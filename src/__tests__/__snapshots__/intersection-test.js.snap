@@ -22,6 +22,10 @@ var MyComponent = function (_React$Component) {
 }(React.Component);
 
 MyComponent.propTypes = {
-    someProp: require(\\"prop-types\\").any.isRequired
+    someProp: function someProp(props, propName, componentName) {
+        if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+            throw new Error(\\"Prop \`\\" + propName + \\"\` has type 'any', but was not provided to \`\\" + componentName + \\"\`. Pass undefined or any other value.\\");
+        }
+    }
 };"
 `;

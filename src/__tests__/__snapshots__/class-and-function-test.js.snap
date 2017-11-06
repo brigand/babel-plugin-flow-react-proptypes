@@ -41,7 +41,11 @@ var TaskGridHeader = function (_Component) {
 }(_react.Component);
 
 TaskGridHeader.propTypes = {
-    tasksSetSort: require('prop-types').any.isRequired
+    tasksSetSort: function tasksSetSort(props, propName, componentName) {
+        if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+            throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+        }
+    }
 };
 exports.default = TaskGridHeader;
 
