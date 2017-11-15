@@ -30,7 +30,7 @@ const exactTemplate = template(`
 const anyTemplate = template(`
 (props, propName, componentName) => {
   if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-    throw new Error(\`Prop \\\`\${propName}\\\` has type 'any', but was not provided to \\\`\${componentName\}\\\`. Pass undefined or any other value.\`);
+    throw new Error(\`Prop \\\`\${propName}\\\` has type 'any' or 'mixed', but was not provided to \\\`\${componentName\}\\\`. Pass undefined or any other value.\`);
   }
 }
 `);
@@ -275,7 +275,13 @@ function makePropType(data, isExact) {
   }
   else if (method === 'any') {
     markFullExpressionAsRequired = false;
-    node = anyTemplate().expression;
+    
+    if (data.isRequired) {
+      node = anyTemplate().expression;
+    }
+    else {
+      node = t.memberExpression(node, t.identifier(method));
+    }
   }
   else if (method === 'raw') {
     markFullExpressionAsRequired = false;

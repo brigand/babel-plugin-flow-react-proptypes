@@ -47,12 +47,12 @@ Foo.propTypes = {
   instance_of_Bar: typeof Bar === 'function' ? require('prop-types').instanceOf(Bar).isRequired : require('prop-types').any.isRequired,
   anything: function anything(props, propName, componentName) {
     if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\' or \\\\'mixed\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
     }
   },
   mixed: function mixed(props, propName, componentName) {
     if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\' or \\\\'mixed\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
     }
   },
   one_of: require('prop-types').oneOf(['QUACK', 'BARK', 5]).isRequired,

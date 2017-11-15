@@ -10,7 +10,7 @@ var ActionTypes = {
 var babelPluginFlowReactPropTypes_proptype_JumpToAction = {
   type: function type(props, propName, componentName) {
     if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
+      throw new Error('Prop \`' + propName + '\` has type \\\\'any\\\\' or \\\\'mixed\\\\', but was not provided to \`' + componentName + '\`. Pass undefined or any other value.');
     }
   },
   index: require('prop-types').number.isRequired
