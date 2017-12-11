@@ -273,9 +273,7 @@ module.exports = function flowReactPropTypes(babel) {
           }
         });
 
-        annotate(path, propTypes, contextTypes);
-
-        // or Component<void, Props, void>
+        // or Component<void, Props, Context>
         const secondSuperParam = getPropsTypeParam(path.node);
         if (secondSuperParam && secondSuperParam.type === 'GenericTypeAnnotation') {
           const typeAliasName = secondSuperParam.id.name;
@@ -284,8 +282,23 @@ module.exports = function flowReactPropTypes(babel) {
           if (!props) {
             throw new TypeError(`Couldn't find type "${typeAliasName}"`);
           }
-          return annotate(path, props);
+
+          propTypes = props;
         }
+
+        const thirdSuperParam = getContextTypeParam(path.node);
+        if (thirdSuperParam && thirdSuperParam.type === 'GenericTypeAnnotation') {
+          const typeAliasName = thirdSuperParam.id.name;
+          if (typeAliasName === 'Object') return;
+          const props = internalTypes[typeAliasName] || importedTypes[typeAliasName];
+          if (!props) {
+            throw new TypeError(`Couldn't find type "${typeAliasName}"`);
+          }
+
+          contextTypes = props;
+        }
+
+        annotate(path, propTypes, contextTypes);
       },
 
       FunctionExpression(path) {
@@ -465,6 +478,16 @@ function getPropsTypeParam(node) {
   }
   else if (superTypes.params.length === 1) {
     return superTypes.params[0];
+  }
+  return null;
+}
+
+function getContextTypeParam(node) {
+  if (!node) return null;
+  if (!node.superTypeParameters) return null;
+  const superTypes = node.superTypeParameters;
+  if (superTypes.params.length === 3) {
+    return superTypes.params[2];
   }
   return null;
 }
