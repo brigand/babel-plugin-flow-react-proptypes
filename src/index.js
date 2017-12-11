@@ -134,11 +134,9 @@ module.exports = function flowReactPropTypes(babel) {
       throw new Error(`babel-plugin-flow-react-proptypes attempted to add propTypes to a function/class with no name`);
     }
 
-    if (!propsOrVar) {
-      throw new Error(`Did not find type annotation for ${name}`);
+    if (propsOrVar) {
+      addAnnotationsToAST(targetPath, name, 'propTypes', propsOrVar);
     }
-
-    addAnnotationsToAST(targetPath, name, 'propTypes', propsOrVar);
 
     if (contextOrVar) {
       addAnnotationsToAST(targetPath, name, 'contextTypes', contextOrVar);
@@ -248,7 +246,9 @@ module.exports = function flowReactPropTypes(babel) {
           return;
         }
 
-        // And have type as property annotations or Component<void, Props, void>
+
+        let propTypes = null, contextTypes = null;
+        // And have type as property annotations
         path.node.body.body.forEach(bodyNode => {
           if (bodyNode && bodyNode.key.name === 'props' && bodyNode.typeAnnotation) {
             const annotation = bodyNode.typeAnnotation.typeAnnotation;
@@ -256,11 +256,26 @@ module.exports = function flowReactPropTypes(babel) {
             if (!props) {
               throw new TypeError('Couldn\'t process \`class { props: This }`');
             }
-            return annotate(path, props);
+
+            propTypes = props;
+
+            return;
+          }
+
+          if (bodyNode && bodyNode.key.name === 'context' && bodyNode.typeAnnotation) {
+            const annotation = bodyNode.typeAnnotation.typeAnnotation;
+            const context = getPropsForTypeAnnotation(annotation);
+            if (!context) {
+              throw new TypeError('Couldn\'t process \`class { context: This }`');
+            }
+
+            contextTypes = context;
           }
         });
 
-        // super type parameter
+        annotate(path, propTypes, contextTypes);
+
+        // or Component<void, Props, void>
         const secondSuperParam = getPropsTypeParam(path.node);
         if (secondSuperParam && secondSuperParam.type === 'GenericTypeAnnotation') {
           const typeAliasName = secondSuperParam.id.name;
