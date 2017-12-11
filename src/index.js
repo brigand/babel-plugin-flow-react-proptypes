@@ -66,6 +66,46 @@ module.exports = function flowReactPropTypes(babel) {
     return false;
   };
 
+
+    /**
+     * Adds propTypes or contextTypes annotations to code
+     *
+     * Extracts some shared logic from `annotate`.
+     *
+     * @param path
+     * @param name
+     * @param attribute - target member name ('propTypes' or 'contextTypes')
+     * @param typesOrVar - propsOrVar / contextOrVar value
+     */
+  const addAnnotationsToAST = (path, name, attribute, typesOrVar) => {
+    let attachPropTypesAST;
+    // if type was exported, use the declared variable
+    if (typeof typesOrVar === 'string'){
+      attachPropTypesAST = t.expressionStatement(
+        t.assignmentExpression(
+          '=',
+          t.memberExpression(t.identifier(name), t.identifier(attribute)),
+          t.identifier(typesOrVar)
+        )
+      );
+    }
+    // type was not exported, generate
+    else {
+      const propTypesAST = makePropTypesAstForPropTypesAssignment(typesOrVar);
+      if (propTypesAST == null) {
+        return;
+      }
+      attachPropTypesAST = t.expressionStatement(
+        t.assignmentExpression(
+          '=',
+          t.memberExpression(t.identifier(name), t.identifier(attribute)),
+          propTypesAST
+        )
+      );
+    }
+    path.insertAfter(attachPropTypesAST);
+  };
+
     /**
      * Called when visiting a node.
      *
@@ -75,8 +115,9 @@ module.exports = function flowReactPropTypes(babel) {
      *
      * @param path
      * @param propsOrVar - props or exported props variable reference
+     * @param contextOrVar - context or exported context variable reference
      */
-  const annotate = (path, propsOrVar) => {
+  const annotate = (path, propsOrVar, contextOrVar = null) => {
     let name;
     let targetPath;
 
@@ -97,39 +138,18 @@ module.exports = function flowReactPropTypes(babel) {
       throw new Error(`Did not find type annotation for ${name}`);
     }
 
-    let attachPropTypesAST;
-    // if type was exported, use the declared variable
-    if (typeof propsOrVar === 'string'){
-      attachPropTypesAST = t.expressionStatement(
-        t.assignmentExpression(
-          '=',
-          t.memberExpression(t.identifier(name), t.identifier('propTypes')),
-          t.identifier(propsOrVar)
-        )
-      );
+    addAnnotationsToAST(targetPath, name, 'propTypes', propsOrVar);
+
+    if (contextOrVar) {
+      addAnnotationsToAST(targetPath, name, 'contextTypes', contextOrVar);
     }
-    // type was not exported, generate
-    else {
-      const propTypesAST = makePropTypesAstForPropTypesAssignment(propsOrVar);
-      if (propTypesAST == null) {
-        return;
-      }
-      attachPropTypesAST = t.expressionStatement(
-        t.assignmentExpression(
-          '=',
-          t.memberExpression(t.identifier(name), t.identifier('propTypes')),
-          propTypesAST
-        )
-      );
-    }
-    targetPath.insertAfter(attachPropTypesAST);
   };
 
     /**
      * Visitor for functions.
      *
      * Determines if a function is a functional react component and
-     * inserts the proptypes AST via `annotate`.
+     * inserts the proptypes and contexttypes AST via `annotate`.
      *
      * @param path
      */
@@ -144,6 +164,12 @@ module.exports = function flowReactPropTypes(babel) {
       && firstParam.typeAnnotation
       && firstParam.typeAnnotation.typeAnnotation;
 
+    // Check if the component has context annotations
+    const secondParam = path.node.params[1];
+    const contextAnnotation = secondParam
+      && secondParam.typeAnnotation
+      && secondParam.typeAnnotation.typeAnnotation;
+
     let propsOrVar = null;
     if (!typeAnnotation) {
       $debug('Found stateless component without type definition');
@@ -154,8 +180,19 @@ module.exports = function flowReactPropTypes(babel) {
         getPropsForTypeAnnotation(typeAnnotation);
     }
 
+    let contextOrVar;
+
+    if (contextAnnotation) {
+      contextOrVar = contextAnnotation.id && exportedTypes[contextAnnotation.id.name] ?
+        exportedTypes[contextAnnotation.id.name] :
+        getPropsForTypeAnnotation(contextAnnotation);
+    }
+    else {
+      contextOrVar = null;
+    }
+
     if (propsOrVar) {
-      annotate(path, propsOrVar);
+      annotate(path, propsOrVar, contextOrVar);
     }
   };
 

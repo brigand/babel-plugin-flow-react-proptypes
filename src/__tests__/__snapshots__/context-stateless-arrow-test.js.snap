@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parses second argument as contextTypes 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
+    value: true
+});
+
+var React = require('react');
+
+var Foo = function Foo(props, context) {
+    React.createElement(
+        'div',
+        null,
+        props.x
+    );
+};
+
+Foo.contextTypes = {
+    lang: require('prop-types').string.isRequired
+};
+Foo.propTypes = {
+    x: require('prop-types').oneOf(['option1', 'option2'])
+};
+exports.default = Foo;"
+`;
