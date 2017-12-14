@@ -73,7 +73,10 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
   }
   else if (node.type === 'FunctionTypeAnnotation') resultPropType = {type: 'func'};
   else if (node.type === 'AnyTypeAnnotation') resultPropType = {type: 'any'};
+  // babylon6 Node Name
   else if (node.type === 'ExistentialTypeParam') resultPropType = {type: 'any'};
+  // babylon7 Node Name
+  else if (node.type === 'ExistsTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'MixedTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'TypeofTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'NumberTypeAnnotation') resultPropType = {type: 'number'};
@@ -226,10 +229,17 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
   }
   else if (node.type in {
     'StringLiteralTypeAnnotation': 0,
+    // Babylon6
     'NumericLiteralTypeAnnotation': 0,
+    // Babylon7
+    'NumberLiteralTypeAnnotation': 0,
     'BooleanLiteralTypeAnnotation': 0,
     'NullLiteralTypeAnnotation': 0,
   }) {
+    // babylon7 does not provide value for NullLiteralTypeAnnotation
+    if (node.type === 'NullLiteralTypeAnnotation') {
+      node.value = true;
+    }
     resultPropType = {type: 'oneOf', options: [node.value]};
   }
 
