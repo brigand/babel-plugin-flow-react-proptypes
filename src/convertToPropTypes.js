@@ -236,11 +236,12 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     'BooleanLiteralTypeAnnotation': 0,
     'NullLiteralTypeAnnotation': 0,
   }) {
+    let value = node.value;
     // babylon7 does not provide value for NullLiteralTypeAnnotation
     if (node.type === 'NullLiteralTypeAnnotation') {
-      node.value = true;
+      value = true;
     }
-    resultPropType = {type: 'oneOf', options: [node.value]};
+    resultPropType = {type: 'oneOf', options: [value]};
   }
 
   if (resultPropType) {
