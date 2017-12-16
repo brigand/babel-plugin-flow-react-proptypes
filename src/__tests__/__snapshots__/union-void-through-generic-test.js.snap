@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`union-void-through-generic 1`] = `
+"'use strict';
+
+var React = require('react');
+
+function C(props) {
+  return React.createElement(
+    'div',
+    null,
+    props.foo
+  );
+}
+C.propTypes = {
+  foo: require('prop-types').string
+};"
+`;

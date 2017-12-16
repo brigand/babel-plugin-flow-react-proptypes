@@ -7,9 +7,95 @@ function getObjectTypePropertyKey(node) {
   return node.key.name;
 }
 
+function mapGenericToRealType(node, typeParamMapping) {
+  if (node.type === 'GenericTypeAnnotation' && node.id.type === 'Identifier') {
+    return typeParamMapping[node.id.name] || node;
+  }
+  else if (node.type === 'NullableTypeAnnotation') {
+    const realTypeAnnotation = mapGenericToRealType(node.typeAnnotation, typeParamMapping);
+    const newNode = Object.assign({}, node, {
+      typeAnnotation: realTypeAnnotation,
+    });
+    return newNode;
+  }
+  else if (node.type === 'UnionTypeAnnotation') {
+    const realTypes = node.types.map(n => mapGenericToRealType(n, typeParamMapping));
+    const newNode = Object.assign({}, node, {
+      types: realTypes,
+    });
+    return newNode;
+  }
+  else if (node.type === 'ObjectTypeProperty') {
+    const realValue = mapGenericToRealType(node.value, typeParamMapping);
+    const newNode = Object.assign({}, node, {
+      value: realValue,
+    });
+    return newNode;
+  }
+  else if (node.type === 'ObjectTypeAnnotation') {
+    const realProperties = node.properties.map(p => mapGenericToRealType(p, typeParamMapping));
+    const newNode = Object.assign({}, node, {
+      properties: realProperties,
+    });
+    return newNode;
+  }
+  return node;
+}
+
+function convertGenericToPropTypes(node, typeParamMapping, importedTypes, internalTypes) {
+  if (node.type === 'GenericTypeAnnotation' && node.id.type === 'Identifier' && !node.typeParameters) {
+    return convertToPropTypes(typeParamMapping[node.id.name], importedTypes, internalTypes);
+  }
+  else if (node.type === 'GenericTypeAnnotation' && node.typeParameters) {
+    const realTypeParameters = node.typeParameters.params.map(p => mapGenericToRealType(p, typeParamMapping));
+    return internalTypes[node.id.name](realTypeParameters);
+  }
+  else if (node.type === 'ArrayTypeAnnotation') {
+    const realElementType = mapGenericToRealType(node.elementType, typeParamMapping);
+    const realNode = Object.assign({}, node, {
+      elementType: realElementType,
+    });
+    return convertToPropTypes(realNode, importedTypes, internalTypes);
+  }
+  else if (node.type === 'NullableTypeAnnotation') {
+    const result = convertGenericToPropTypes(node.typeAnnotation, typeParamMapping, importedTypes, internalTypes);
+    result.optional = true;
+    return result;
+  }
+  else if (node.type === 'UnionTypeAnnotation') {
+    const types = node.types.map(n => mapGenericToRealType(n, typeParamMapping));
+    const realNode = Object.assign({}, node, {
+      types,
+    });
+    return convertToPropTypes(realNode, importedTypes, internalTypes);
+  }
+  else if (node.type === 'ObjectTypeAnnotation') {
+    const properties = node.properties.map(n => mapGenericToRealType(n, typeParamMapping));
+    const realNode = Object.assign({}, node, {
+      properties,
+    });
+    return convertToPropTypes(realNode, importedTypes, internalTypes);
+  }
+}
+
 export default function convertToPropTypes(node, importedTypes, internalTypes) {
   $debug('convertToPropTypes', node);
   let resultPropType;
+  
+  if (node.type === 'TypeAlias' && node.typeParameters) {
+    return (types) => {
+      const typeParams = node.typeParameters.params.map(t => t.name);
+      const typeParamMapping = {};
+      for (let i = 0; i < typeParams.length; i++) {
+        typeParamMapping[typeParams[i]] = types[i];
+      }
+      // console.log(node.right, typeParamMapping);
+      return convertGenericToPropTypes(node.right, typeParamMapping, importedTypes, internalTypes);
+    };
+  }
+  else if (node.right) {
+    node = node.right;
+  }
 
   if (node.type === 'ObjectTypeAnnotation') {
     const properties = [];
@@ -179,6 +265,9 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
       node.id.qualification.name === 'React' &&
       (node.id.id.name === 'Element' || node.id.id.name === 'Node')) {
       resultPropType = {type: 'node'};
+    }
+    else if (node.type === 'GenericTypeAnnotation' && node.typeParameters && typeof internalTypes[node.id.name] === 'function') {
+      resultPropType = Object.assign({}, internalTypes[node.id.name](node.typeParameters.params));
     }
     else if (node.id && node.id.name && internalTypes[node.id.name]) {
       resultPropType = Object.assign({}, internalTypes[node.id.name]);

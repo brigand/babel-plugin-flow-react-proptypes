@@ -242,14 +242,13 @@ module.exports = function flowReactPropTypes(babel) {
       TypeAlias(path) {
         if (suppress) return;
         $debug('TypeAlias found');
-        const {right} = path.node;
 
         const typeAliasName = path.node.id.name;
         if (!typeAliasName) {
           throw new Error('Did not find name for type alias');
         }
 
-        const propTypes = convertNodeToPropTypes(right);
+        const propTypes = convertNodeToPropTypes(path.node);
         internalTypes[typeAliasName] = propTypes;
       },
       "ClassExpression|ClassDeclaration"(path) {
