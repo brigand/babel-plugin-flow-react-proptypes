@@ -198,7 +198,7 @@ returns a truthy value, then the propTypes will be removed. This works because e
 Example of specifying a custom expression:
 
 ```json
-  "plugins": [["flow-react-proptypes", { "deadCode": "__DEV__" }]]
+  "plugins": [["flow-react-proptypes", { "deadCode": "__PROD__" }]]
 ```
 
 ## Suppression

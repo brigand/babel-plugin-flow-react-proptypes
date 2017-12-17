@@ -51,7 +51,8 @@
     "jest-environment-node-debug": "^2.0.0",
     "prettier": "^1.4.4",
     "react": "^15.5.4",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
+    "uglify-js": "^3.2.2"
   },
   "dependencies": {
     "babel-core": "^6.25.0",

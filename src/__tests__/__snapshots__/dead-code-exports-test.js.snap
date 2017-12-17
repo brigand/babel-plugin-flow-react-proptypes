@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dead-code-exports 1`] = `
+"'use strict';
+
+var React = require('react');
+
+var babelPluginFlowReactPropTypes_proptype_MyType = __PROD__ ? null : require('prop-types').oneOfType([require('prop-types').string, require('prop-types').number]);
+if (!__PROD__ && typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_MyType', {
+  value: babelPluginFlowReactPropTypes_proptype_MyType,
+  configurable: true
+});"
+`;
+
+exports[`dead-code-exports uglify 1`] = `"\\"use strict\\";require(\\"react\\");"`;

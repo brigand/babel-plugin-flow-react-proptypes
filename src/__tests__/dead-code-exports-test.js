@@ -3,8 +3,8 @@ const { minify } = require('uglify-js');
 const content = `
 var React = require('react');
 
-type Props = { x: string };
-const Foo = (props: Props) => <div />;
+export type MyType = string | number;
+
 `;
 
 const opts = {
@@ -13,15 +13,16 @@ const opts = {
   plugins: ['syntax-flow', [require('../'), { deadCode: '__PROD__' }]],
 };
 
-it('dead-code-string', () => {
+it('dead-code-exports', () => {
   const res = babel.transform(content, opts).code;
-  expect(res).toMatch(/__PROD__\s*\?/);
+  expect(res).toMatch(/__PROD__/);
   expect(res).toMatchSnapshot();
 });
 
-it('dead-code-string uglify', () => {
+it('dead-code-exports uglify', () => {
   const res = babel.transform(content, opts).code
-    .replace(/__PROD__/, 'true');
+    .replace(/__PROD__/g, 'true');
   const { code: min } = minify(res, { toplevel: true });
   expect(min).not.toMatch(/prop-types/);
+  expect(min).toMatchSnapshot();
 });

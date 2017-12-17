@@ -8,7 +8,7 @@ var React = require('react');
 var Foo = function Foo(props) {
   return React.createElement('div', null);
 };
-Foo.propTypes = __DEV__ ? null : {
+Foo.propTypes = __PROD__ ? null : {
   x: require('prop-types').string.isRequired
 };"
 `;
