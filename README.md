@@ -182,6 +182,25 @@ Add the option to your babel config.
   "plugins": [["flow-react-proptypes", { "useStatic": true }]]
 }
 
+## deadCode
+
+The deadCode option (disabled by default) adds a predicate to the code allowing both your propTypes definitions and potentially the
+entire 'prop-types' package to be excluded in certain builds. Unlike specifying this plugin in the development env, mentioned above,
+this also works for packages published to npm.
+
+```json
+  "plugins": [["flow-react-proptypes", { "deadCode": true }]]
+```
+
+The value of `true` is short for `process.env.NODE_ENV === 'production'`. You can alternatively pass any JavaScript expression. If the expression
+returns a truthy value, then the propTypes will be removed. This works because e.g. webpack will subsitute the value of `process.env.NODE_ENV` with `'production'`, resulting in the condition being `'production' === 'production'`, and then a minifer sees that the code we're generating can't be executed, and strips it, and the `require('prop-types')` code out of the final bundle.
+
+Example of specifying a custom expression:
+
+```json
+  "plugins": [["flow-react-proptypes", { "deadCode": "__DEV__" }]]
+```
+
 ## Suppression
 This plugin isn't perfect. You can disable it for an entire file with this directive (including quotes):
 
