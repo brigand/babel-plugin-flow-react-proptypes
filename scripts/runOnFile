@@ -32,7 +32,7 @@ if (process.argv.includes('--rn')) {
   babelConfig = {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
-    plugins: ['syntax-flow', [self, { "useStatic": true}]],
+    plugins: ['syntax-flow', [self, { "useStatic": true, deadCode: '__DEV__' }]],
   };
 }
 

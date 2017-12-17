@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dead-code-true 1`] = `
+"'use strict';
+
+var React = require('react');
+
+var Foo = function Foo(props) {
+  return React.createElement('div', null);
+};
+Foo.propTypes = process.env.NODE_ENV === 'production' ? null : {
+  x: require('prop-types').string.isRequired
+};"
+`;
