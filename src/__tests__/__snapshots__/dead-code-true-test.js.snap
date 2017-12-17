@@ -12,3 +12,5 @@ Foo.propTypes = process.env.NODE_ENV === 'production' ? null : {
   x: require('prop-types').string.isRequired
 };"
 `;
+
+exports[`dead-code-true uglify 1`] = `"\\"use strict\\";var e=require(\\"react\\");(function(r){return e.createElement(\\"div\\",null)}).propTypes=null;"`;

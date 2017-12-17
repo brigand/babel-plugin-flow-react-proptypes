@@ -24,4 +24,5 @@ it('dead-code-true uglify', () => {
     .replace(/process.env.NODE_ENV/, '"production"');
   const { code: min } = minify(res, { toplevel: true });
   expect(min).not.toMatch(/prop-types/);
+  expect(min).toMatchSnapshot();
 });
