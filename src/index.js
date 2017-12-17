@@ -60,11 +60,11 @@ module.exports = function flowReactPropTypes(babel) {
   let opts = {};
 
   const _templateCache = {};
-  function wrapInDceCheck(node) {
+  function getDcePredicate() {
     // opts.deadCode could be a boolean (true for DEFAULT_DCE), or a string to be
     // used as a template
     // if it's falsy, then just return node without any wrapper
-    if (!opts.deadCode) return node;
+    if (!opts.deadCode) return null;
 
     // cache the template since it's going to be used a lot
     const templateCode = typeof opts.deadCode === 'string' ? opts.deadCode : DEFAULT_DCE;
@@ -74,6 +74,13 @@ module.exports = function flowReactPropTypes(babel) {
 
     // return a ternary
     const predicate = _templateCache[templateCode]({}).expression;
+    return predicate;
+  }
+
+  function wrapInDceCheck(node) {
+    const predicate = getDcePredicate(node);
+    if (!predicate) return node;
+
     const conditional = t.conditionalExpression(
       predicate,
       t.nullLiteral(),
@@ -414,7 +421,7 @@ module.exports = function flowReactPropTypes(babel) {
           [
             t.variableDeclarator(
               t.identifier(exportedName),
-              propTypesAst
+              wrapInDceCheck(propTypesAst)
             )
           ]
         );
@@ -433,15 +440,27 @@ module.exports = function flowReactPropTypes(babel) {
               ]),
             ]
           ));
-          const conditionalExportsAst = t.ifStatement(
-            t.binaryExpression(
-              '!==',
-              t.unaryExpression(
-                'typeof',
-                t.identifier('exports')
-              ),
-              t.stringLiteral('undefined')
+          const exportsDefinedCondition = t.binaryExpression(
+            '!==',
+            t.unaryExpression(
+              'typeof',
+              t.identifier('exports')
             ),
+            t.stringLiteral('undefined')
+          );
+
+          let ifCond = exportsDefinedCondition;
+          if (opts.deadCode) {
+            const dceConditional = t.unaryExpression('!', getDcePredicate());
+            ifCond = t.logicalExpression(
+              '&&',
+              dceConditional,
+              ifCond,
+            );
+          }
+
+          const conditionalExportsAst = t.ifStatement(
+            ifCond,
             exportAst
           );
           path.insertAfter(conditionalExportsAst);
