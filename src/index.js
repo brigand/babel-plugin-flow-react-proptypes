@@ -89,10 +89,10 @@ module.exports = function flowReactPropTypes(babel) {
         let toAdd = null;
 
         if (type === 'default') {
-          toAdd = impTemplates.default({ NAME: tid(local), LOCAL: tid(local) });
+          toAdd = impTemplates.default({ NAME: tid(local) });
         }
         else if (type === 'named') {
-          toAdd = impTemplates.named({ LOCAL: tid(local), NAME: tid(name) });
+          toAdd = impTemplates.named({ LOCAL: tid(local) });
         }
         if (toAdd) {
           toAdd.source.value = location;
