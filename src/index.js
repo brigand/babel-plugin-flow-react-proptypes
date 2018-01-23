@@ -250,6 +250,7 @@ module.exports = function flowReactPropTypes(babel) {
     let targetPath;
 
     if (!opts.noStatic && (path.type === 'ClassDeclaration' || path.type === 'ClassExpression')) {
+      name = path.node.id.name;
       targetPath = path;
     }
     else if (path.type === 'ArrowFunctionExpression' || path.type === 'FunctionExpression') {
