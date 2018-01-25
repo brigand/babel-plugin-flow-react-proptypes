@@ -421,7 +421,8 @@ module.exports = function flowReactPropTypes(babel) {
           if (typeAliasName === 'Object') return;
           const props = internalTypes[typeAliasName] || (importedTypes[typeAliasName] && importedTypes[typeAliasName].accessNode);
           if (!props) {
-            throw new TypeError(`Couldn't find type "${typeAliasName}"`);
+            $debug(`Couldn't find type "${typeAliasName}"`);
+            return;
           }
 
           propTypes = props;
