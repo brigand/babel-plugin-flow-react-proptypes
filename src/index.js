@@ -67,7 +67,7 @@ module.exports = function flowReactPropTypes(babel) {
   let opts = {};
 
   function shouldUseImport() {
-    return opts.useESModules !== false;
+    return opts.useESModules === true || !opts.deadCode;
   }
 
   const impTemplates = {
