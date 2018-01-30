@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dead-code-true 1`] = `
-"'use strict';
-
+"
 var React = require('react');
 
 var Foo = function Foo(props) {
@@ -13,4 +12,19 @@ Foo.propTypes = process.env.NODE_ENV === 'production' ? null : {
 };"
 `;
 
-exports[`dead-code-true uglify 1`] = `"\\"use strict\\";var e=require(\\"react\\");(function(r){return e.createElement(\\"div\\",null)}).propTypes=null;"`;
+exports[`dead-code-true uglify 1`] = `"require(\\"react\\");"`;
+
+exports[`dead-code-true uglify with esm 1`] = `"require(\\"react\\");import r from\\"prop-types\\";"`;
+
+exports[`dead-code-true with esm 1`] = `
+"
+var React = require('react');
+
+var Foo = function Foo(props) {
+  return React.createElement('div', null);
+};
+Foo.propTypes = process.env.NODE_ENV === 'production' ? null : {
+  x: PropTypes.string.isRequired
+};
+import PropTypes from 'prop-types';"
+`;

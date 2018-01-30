@@ -1,15 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dead-code-exports 1`] = `
-"'use strict';
-
-var React = require('react');
-
-var bpfrpt_proptype_MyType = __PROD__ ? null : require('prop-types').oneOfType([require('prop-types').string, require('prop-types').number]);
+"var bpfrpt_proptype_MyType = __PROD__ ? null : require('prop-types').oneOfType([require('prop-types').string, require('prop-types').number, function () {
+  return (typeof require('./dep.js').bpfrpt_proptype_DepType === 'function' ? require('./dep.js').bpfrpt_proptype_DepType : require('prop-types').shape(require('./dep.js').bpfrpt_proptype_DepType)).apply(this, arguments);
+}]);
 if (!__PROD__ && typeof exports !== 'undefined') Object.defineProperty(exports, 'bpfrpt_proptype_MyType', {
   value: bpfrpt_proptype_MyType,
   configurable: true
 });"
 `;
 
-exports[`dead-code-exports uglify 1`] = `"\\"use strict\\";require(\\"react\\");"`;
+exports[`dead-code-exports uglify 1`] = `""`;
+
+exports[`dead-code-exports uglify with esm 1`] = `"var p=null;import{bpfrpt_proptype_DepType as r}from\\"./dep.js\\";import o from\\"prop-types\\";export{p as bpfrpt_proptype_MyType};"`;
+
+exports[`dead-code-exports with esm 1`] = `
+"var bpfrpt_proptype_MyType = __PROD__ ? null : PropTypes.oneOfType([PropTypes.string, PropTypes.number, function () {
+  return (typeof bpfrpt_proptype_DepType === 'function' ? bpfrpt_proptype_DepType : PropTypes.shape(bpfrpt_proptype_DepType)).apply(this, arguments);
+}]);
+import { bpfrpt_proptype_DepType } from './dep.js';
+import PropTypes from 'prop-types';
+export { bpfrpt_proptype_MyType };"
+`;

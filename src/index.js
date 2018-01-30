@@ -67,7 +67,7 @@ module.exports = function flowReactPropTypes(babel) {
   let opts = {};
 
   function shouldUseImport() {
-    return !opts.deadCode;
+    return opts.useESModules !== false;
   }
 
   const impTemplates = {
@@ -506,7 +506,7 @@ module.exports = function flowReactPropTypes(babel) {
         if (!omitRuntimeTypeExport) {
           if (path.node[SKIP]) return;
 
-          if (!opts.deadCode) {
+          if (!opts.deadCode || shouldUseImport()) {
             if (!path.parentPath.isProgram()) return;
             const body = path.parentPath.node.body;
             const exportAst = t.exportNamedDeclaration(
