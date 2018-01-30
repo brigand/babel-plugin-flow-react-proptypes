@@ -179,7 +179,7 @@ Example of specifying a custom expression:
 
 ## useESModules
 
-The `useESModules` forces esm with enabled `deadCode` which wraps prop types with condition, but do not remove import/export statement in favor of your favorite bundle.
+The `useESModules` option forces this plugin to output ES6 modules, even if the `deadCode` option is enabled. Your bundler will be responsible for removing the dead code.
 
 ## Suppression
 This plugin isn't perfect. You can disable it for an entire file with this directive (including quotes):
