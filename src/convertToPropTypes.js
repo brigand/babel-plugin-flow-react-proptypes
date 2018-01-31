@@ -100,7 +100,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     node = node.body;
   }
 
-  if (node.type === 'ObjectTypeAnnotation' || node.type === 'ObjectTypeAnnotation') {
+  if (node.type === 'ObjectTypeAnnotation') {
     const properties = [];
 
     // recurse on object properties
