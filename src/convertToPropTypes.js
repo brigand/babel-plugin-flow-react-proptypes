@@ -96,7 +96,11 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     node = node.right;
   }
 
-  if (node.type === 'ObjectTypeAnnotation') {
+  if (node.type === 'InterfaceDeclaration') {
+    node = node.body;
+  }
+
+  if (node.type === 'ObjectTypeAnnotation' || node.type === 'ObjectTypeAnnotation') {
     const properties = [];
 
     // recurse on object properties

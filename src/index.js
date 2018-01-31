@@ -410,9 +410,9 @@ module.exports = function flowReactPropTypes(babel) {
           }
         }
       },
-      TypeAlias(path) {
+      "TypeAlias|InterfaceDeclaration"(path) {
         if (suppress) return;
-        $debug('TypeAlias found');
+        $debug('TypeAlias/InterfaceDeclaration found');
 
         const typeAliasName = path.node.id.name;
         if (!typeAliasName) {
