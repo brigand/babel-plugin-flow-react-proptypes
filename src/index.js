@@ -72,27 +72,34 @@ module.exports = function flowReactPropTypes(babel) {
 
   const impTemplates = {
     named: babel.template(`import { LOCAL } from 'change me'`, { sourceType: 'module' }),
+    renamed: babel.template(`import { SOURCE as LOCAL } from 'change me'`, { sourceType: 'module' }),
     default: babel.template(`import NAME from 'change me'`,  { sourceType: 'module' }),
     requireDefault: babel.template(`require(PATH)`),
     requireNamed: babel.template(`require(PATH).NAME`),
   };
-  function getFromModule(path, { type = 'default', name, location }) {
+  function getFromModule(path, { type = 'default', name, local = name, location }) {
     const tid = t.identifier;
     const tstr = t.stringLiteral;
     const key = `name:${location}:${name}`;
 
     if (shouldUseImport()) {
       if (!addedImports[key]) {
-        const local = name.replace(/[^a-zA-Z0-9]+/g, '_');
-        addedImports[key] = local;
+        const localName = local.replace(/[^a-zA-Z0-9]+/g, '_');
+        const sourceName = name.replace(/[^a-zA-Z0-9]+/g, '_');
+        addedImports[key] = localName;
 
         let toAdd = null;
 
         if (type === 'default') {
-          toAdd = impTemplates.default({ NAME: tid(local) });
+          toAdd = impTemplates.default({ NAME: tid(localName) });
         }
         else if (type === 'named') {
-          toAdd = impTemplates.named({ LOCAL: tid(local) });
+          if (localName === sourceName) {
+            toAdd = impTemplates.named({ LOCAL: tid(localName) });
+          }
+          else {
+            toAdd = impTemplates.renamed({ LOCAL: tid(localName), SOURCE: tid(sourceName) });
+          }
         }
         if (toAdd) {
           toAdd.source.value = location;
@@ -594,8 +601,9 @@ module.exports = function flowReactPropTypes(babel) {
         node.specifiers.forEach((specifier) => {
           if (node.importKind !== 'type' && specifier.importKind !== 'type') return;
 
-          const typeName = specifier.type === 'ImportDefaultSpecifier'
-            ? specifier.local.name
+          const typeName = specifier.local.name;
+          const originalTypeName = specifier.type === 'ImportDefaultSpecifier'
+            ? typeName
             : specifier.imported.name;
           // Store the name the type so we can use it later. We do
           // mark it as importedTypes because we do handle these
@@ -606,7 +614,7 @@ module.exports = function flowReactPropTypes(babel) {
           // Later, we will check importedTypes to determine if
           // we want to put this as a 'raw' type in our internal
           // representation
-          importedTypes[typeName] = { exportName: getExportNameForType(typeName), accessNode: null };
+          importedTypes[typeName] = { exportName: getExportNameForType(originalTypeName), accessNode: null };
 
           // https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/129
           if (node.source.value === 'react' && typeName === 'ComponentType') {
@@ -618,7 +626,8 @@ module.exports = function flowReactPropTypes(babel) {
 
           const accessNode = getFromModule(path, {
             type: 'named',
-            name: getExportNameForType(typeName),
+            name: getExportNameForType(originalTypeName),
+            local: getExportNameForType(typeName),
             location: node.source.value,
           });
 
