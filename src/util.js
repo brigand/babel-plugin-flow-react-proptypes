@@ -43,7 +43,7 @@ export function containsReactElement(node) {
       if (matched) {
         path.stop();
         return;
-      };
+      }
 
       const {node} = path;
       const {callee} = node;
@@ -79,4 +79,4 @@ export function hasReactElementTypeAnnotationReturn(node) {
   }
 
   return false;
-};
+}

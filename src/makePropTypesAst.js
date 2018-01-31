@@ -69,7 +69,7 @@ export function makePropTypesAstForPropTypesAssignment(propTypeData) {
   }
 
   return node;
-};
+}
 
 
 /**
@@ -95,7 +95,7 @@ export function makePropTypesAstForExport(propTypeData) {
     ast = makePropType(propTypeData);
   }
   return ast;
-};
+}
 
 
 function makeAnyPropTypeAST() {

@@ -331,14 +331,14 @@ module.exports = function flowReactPropTypes(babel) {
     }
   };
 
-    /**
-     * Visitor for functions.
-     *
-     * Determines if a function is a functional react component and
-     * inserts the proptypes and contexttypes AST via `annotate`.
-     *
-     * @param path
-     */
+  /**
+   * Visitor for functions.
+   *
+   * Determines if a function is a functional react component and
+   * inserts the proptypes and contexttypes AST via `annotate`.
+   *
+   * @param path
+   */
   const functionVisitor = path => {
     if (!isFunctionalReactComponent(path)) {
       return;
@@ -398,7 +398,7 @@ module.exports = function flowReactPropTypes(babel) {
         const directives = path.node.directives;
         if(directives && directives.length)  {
           const directive = directives[0];
-          if (directive.value && directive.value.value == SUPPRESS_STRING) {
+          if (directive.value && directive.value.value === SUPPRESS_STRING) {
             suppress = true;
           }
         }
@@ -520,14 +520,14 @@ module.exports = function flowReactPropTypes(babel) {
 
       // See issue:
       /**
-         * Processes exported type aliases.
-         *
-         * This function also adds something to the AST directly, instead
-         * of invoking annotate.
-         *
-         * @param path
-         * @constructor
-         */
+       * Processes exported type aliases.
+       *
+       * This function also adds something to the AST directly, instead
+       * of invoking annotate.
+       *
+       * @param path
+       * @constructor
+       */
       ExportNamedDeclaration(path) {
         if (suppress) return;
         const {node} = path;
