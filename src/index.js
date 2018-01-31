@@ -546,12 +546,16 @@ module.exports = function flowReactPropTypes(babel) {
           return;
         }
 
-
-        if (!node.declaration || node.declaration.type !== 'TypeAlias') {
-          return;
+        let declarationObject = null;
+        if (!node.declaration) return;
+        if (node.declaration.type === 'TypeAlias') {
+          declarationObject = node.declaration.right;
+        }
+        if (node.declaration.type === 'InterfaceDeclaration') {
+          declarationObject = node.declaration.body;
         }
 
-        const declarationObject = node.declaration.right;
+        if (!declarationObject) return;
 
         const name = node.declaration.id.name;
         const propTypes = convertNodeToPropTypes(declarationObject);
@@ -573,7 +577,6 @@ module.exports = function flowReactPropTypes(babel) {
         );
         path.insertBefore(variableDeclarationAst);
 
-        
         if (!omitRuntimeTypeExport) {
           if (path.node[SKIP]) return;
           addExportTypeDecl(path, exportName);
