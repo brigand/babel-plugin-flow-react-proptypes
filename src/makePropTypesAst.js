@@ -114,7 +114,7 @@ function makeObjectAstForRaw(propTypeSpec, propTypeObjects) {
   // which will not work when used in an intersection.
   const anyNode = makeAnyPropTypeAST();
   const testExpression = t.binaryExpression('===', propTypeObject, anyNode);
-  propTypeObject = t.conditionalExpression(testExpression, t.objectExpression([]), propTypeObject);
+  propTypeObject = t.conditionalExpression(testExpression, t.objectExpression([]), t.cloneDeep(propTypeObject));
   return propTypeObject;
 }
 /**
