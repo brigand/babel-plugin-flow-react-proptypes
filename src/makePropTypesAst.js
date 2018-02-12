@@ -273,7 +273,7 @@ function makePropType(data, isExact) {
 
   if (method === 'string' || method === 'number' || method === 'bool' || method === 'object' ||
       method === 'array' || method === 'func' || method === 'node') {
-    node = t.memberExpression(node, t.identifier(method));
+    node = t.memberExpression(t.cloneDeep(node), t.identifier(method));
   }
   else if (method === 'any' || !method) {
     markFullExpressionAsRequired = false;
@@ -282,7 +282,7 @@ function makePropType(data, isExact) {
       node = anyTemplate().expression;
     }
     else {
-      node = t.memberExpression(node, t.identifier('any'));
+      node = t.memberExpression(t.cloneDeep(node), t.identifier('any'));
     }
   }
   else if (method === 'raw') {
@@ -290,23 +290,23 @@ function makePropType(data, isExact) {
     // In 'raw', we handle variables - typically derived from imported types.
     // These are either - at run-time - objects or functions. Objects are wrapped in a shape;
     // for functions, we assume that the variable already contains a proptype assertion
-    let variableNode = typeof data.value === 'string' ? t.identifier(data.value) : data.value;
+    let variableNode = typeof data.value === 'string' ? t.identifier(data.value) : t.cloneDeep(data.value);
     const originalVariableNode = variableNode;
     let shapeNode = t.callExpression(
       t.memberExpression(
         makePropTypeImportNode(),
         t.identifier('shape'),
       ),
-      [variableNode],
+      [t.cloneDeep(variableNode)],
     );
     if (data.isRequired) {
       shapeNode = markNodeAsRequired(shapeNode);
     }
     if (data.isRequired) {
       variableNode = t.conditionalExpression(
-        t.memberExpression(variableNode, t.identifier('isRequired')),
-        t.memberExpression(variableNode, t.identifier('isRequired')),
-        variableNode
+        t.memberExpression(t.cloneDeep(variableNode), t.identifier('isRequired')),
+        t.memberExpression(t.cloneDeep(variableNode), t.identifier('isRequired')),
+        t.cloneDeep(variableNode)
       );
     }
     const functionCheckNode = makeFunctionCheckAST(originalVariableNode);
@@ -418,5 +418,5 @@ function makePropType(data, isExact) {
     node = markNodeAsRequired(node);
   }
 
-  return node;
+  return t.cloneDeep(node);
 }
