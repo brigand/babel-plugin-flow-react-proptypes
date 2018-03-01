@@ -594,7 +594,7 @@ module.exports = function flowReactPropTypes(babel) {
 
         const {node} = path;
 
-        if (/^\w/.test(node.source.value)) return;
+        if (/^@?\w/.test(node.source.value)) return;
 
         // https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/62
         // if (node.source.value[0] !== '.') {

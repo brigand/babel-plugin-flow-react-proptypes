@@ -31,6 +31,9 @@ C.propTypes = {
   an_imported_named_type: function an_imported_named_type() {
     return (typeof NamedType === 'function' ? _propTypes2.default.instanceOf(NamedType).isRequired : _propTypes2.default.any.isRequired).apply(this, arguments);
   },
+  an_imported_named_namespace_type: function an_imported_named_namespace_type() {
+    return (typeof NamespaceType === 'function' ? _propTypes2.default.instanceOf(NamespaceType).isRequired : _propTypes2.default.any.isRequired).apply(this, arguments);
+  },
   an_imported_default_type: function an_imported_default_type() {
     return (typeof DefaultType === 'function' ? _propTypes2.default.instanceOf(DefaultType).isRequired : _propTypes2.default.any.isRequired).apply(this, arguments);
   },
