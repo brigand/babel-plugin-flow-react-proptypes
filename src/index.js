@@ -237,6 +237,70 @@ module.exports = function flowReactPropTypes(babel) {
     return false;
   };
 
+  const findPresetProperties = (path, objectName, propertyName) => {
+    let propNode = null;
+    let propPath = null;
+
+    path.traverse({
+      ClassProperty(path) {
+        if (path.node.key && path.node.key.name === propertyName) {
+          propNode = path.node.value;
+          propPath = path;
+        }
+      }
+    });
+
+    if (!propNode) {
+      path.parentPath.traverse({
+        ExpressionStatement(path) {
+          if (!path.node.expression || !path.node.expression.left) {
+            return;
+          }
+
+          if (
+            path.node.expression.left.object &&
+            path.node.expression.left.property &&
+            path.node.expression.left.object.name === objectName &&
+            path.node.expression.left.property.name === propertyName
+          ) {
+            propNode = path.node.expression.right;
+            propPath = path;
+          }
+        }
+      });
+    }
+
+    return [propNode, propPath];
+  };
+
+  const mergeExplicitPropTypes = (generatedProperties, path, name) => {
+    const [explicitPropNode, explicitPropPath] =
+      findPresetProperties(path, name, 'propTypes');
+
+    if (!explicitPropNode || !explicitPropNode.properties) {
+      return generatedProperties;
+    }
+
+    const generatedAndExplicitProperties =
+      generatedProperties.concat(explicitPropNode.properties)
+        .reduce((acc, i) => {
+          acc[i.key.name] = i;
+          return acc;
+        }, {});
+
+    const mergedPropTypes =
+      Object.keys(generatedAndExplicitProperties)
+        .map(k => {
+          const original = generatedAndExplicitProperties[k];
+          // delete original line locations to avoid extra new lines
+          delete original.start;
+          delete original.end;
+          return original;
+        });
+
+    explicitPropPath.remove();
+    return mergedPropTypes;
+  };
 
     /**
      * Adds propTypes or contextTypes annotations to code
@@ -273,24 +337,25 @@ module.exports = function flowReactPropTypes(babel) {
     // type was not exported, generate
     else {
       const propTypesAST = makePropTypesAstForPropTypesAssignment(typesOrVar);
-      valueNode = propTypesAST;
-
-      if (attribute === 'propTypes') {
-        valueNode = wrapInDceCheck(valueNode);
-      }
-
       if (propTypesAST == null) {
         return;
       }
-      if (name) {
-        attachPropTypesAST = t.expressionStatement(
-          t.assignmentExpression(
-            '=',
-            t.memberExpression(t.identifier(name), t.identifier(attribute)),
-            valueNode
-          )
-        );
+
+      valueNode = propTypesAST;
+      if (attribute === 'propTypes') {
+        valueNode = wrapInDceCheck(valueNode);
+        if (opts.mergeExplicitPropTypes && valueNode.properties) {
+          valueNode.properties = mergeExplicitPropTypes(valueNode.properties, path, name);
+        }
       }
+
+      attachPropTypesAST = t.expressionStatement(
+        t.assignmentExpression(
+          '=',
+          t.memberExpression(t.identifier(name), t.identifier(attribute)),
+          valueNode
+        )
+      );
     }
 
     if (!opts.noStatic && (path.type === 'ClassDeclaration' || path.type === 'ClassExpression')) {
