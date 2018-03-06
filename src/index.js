@@ -302,6 +302,26 @@ module.exports = function flowReactPropTypes(babel) {
     return mergedPropTypes;
   };
 
+  const setDefaultPropsOptional = (generatedProperties, path, name) => {
+    const [defaultPropNode] =
+      findPresetProperties(path, name, 'defaultProps');
+
+    if (!defaultPropNode || !defaultPropNode.properties) {
+      return generatedProperties;
+    }
+
+    const defaultProps =
+      defaultPropNode.properties.map(prop => prop.key.name);
+
+    return generatedProperties.map(prop => {
+      if (defaultProps.includes(prop.key)) {
+        prop.value.isRequired = false;
+      }
+
+      return prop;
+    });
+  };
+
     /**
      * Adds propTypes or contextTypes annotations to code
      *
@@ -406,6 +426,11 @@ module.exports = function flowReactPropTypes(babel) {
     }
 
     if (propsOrVar) {
+      if (opts.defaultPropsOptional && propsOrVar.properties) {
+        propsOrVar.properties =
+          setDefaultPropsOptional(propsOrVar.properties, targetPath, name);
+      }
+
       addAnnotationsToAST(targetPath, name, 'propTypes', propsOrVar);
     }
 
