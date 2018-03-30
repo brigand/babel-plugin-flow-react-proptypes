@@ -502,7 +502,7 @@ module.exports = function flowReactPropTypes(babel) {
           propTypes = props;
         }
 
-        if (secondSuperParam && secondSuperParam.type === 'ObjectTypeAnnotation') {
+        if (secondSuperParam && (secondSuperParam.type === 'ObjectTypeAnnotation' || secondSuperParam.type === 'IntersectionTypeAnnotation')) {
           propTypes = convertToPropTypes(secondSuperParam, importedTypes, internalTypes);
         }
 
