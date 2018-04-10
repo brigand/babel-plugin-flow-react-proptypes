@@ -9,6 +9,7 @@ interface Interface {
 }
 
 opaque type StringAlias = string;
+export opaque type ExportedStringAlias = string;
 opaque type StringConstraintAlias: string = string;
 opaque type NumberAlias = number;
 opaque type TypeAlias = { a: string, b?: boolean };
@@ -17,6 +18,7 @@ opaque type InterfaceReferenceAlias = Interface;
 
 type T = {
   stringAlias: StringAlias,
+  exportedStringAlias: ExportedStringAlias,
   optionalStringAlias?: StringAlias,
   stringAliasConstraint: StringConstraintAlias,
   numberAlias: NumberAlias,

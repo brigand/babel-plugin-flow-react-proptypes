@@ -587,6 +587,9 @@ module.exports = function flowReactPropTypes(babel) {
         if (node.declaration.type === 'TypeAlias') {
           declarationObject = node.declaration.right;
         }
+        if (node.declaration.type === 'OpaqueType') {
+          declarationObject = node.declaration.impltype;
+        }
         if (node.declaration.type === 'InterfaceDeclaration') {
           declarationObject = node.declaration.body;
         }

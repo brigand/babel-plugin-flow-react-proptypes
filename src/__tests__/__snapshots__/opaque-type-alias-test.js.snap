@@ -6,6 +6,7 @@ exports[`opaque-type-alias 1`] = `
 Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
+exports.bpfrpt_proptype_ExportedStringAlias = undefined;
 
 var _propTypes = require('prop-types');
 
@@ -21,6 +22,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== \\"function
 
 var React = require('react');
 
+var bpfrpt_proptype_ExportedStringAlias = _propTypes2.default.string;
+
 var C = function (_React$Component) {
   _inherits(C, _React$Component);
 
@@ -35,6 +38,7 @@ var C = function (_React$Component) {
 
 C.propTypes = {
   stringAlias: _propTypes2.default.string.isRequired,
+  exportedStringAlias: _propTypes2.default.string.isRequired,
   optionalStringAlias: _propTypes2.default.string,
   stringAliasConstraint: _propTypes2.default.string.isRequired,
   numberAlias: _propTypes2.default.number.isRequired,
@@ -50,5 +54,6 @@ C.propTypes = {
     y: _propTypes2.default.string
   }).isRequired
 };
-exports.default = C;"
+exports.default = C;
+exports.bpfrpt_proptype_ExportedStringAlias = bpfrpt_proptype_ExportedStringAlias;"
 `;
