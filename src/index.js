@@ -428,9 +428,9 @@ module.exports = function flowReactPropTypes(babel) {
           }
         }
       },
-      "TypeAlias|InterfaceDeclaration"(path) {
+      "TypeAlias|InterfaceDeclaration|OpaqueType"(path) {
         if (suppress) return;
-        $debug('TypeAlias/InterfaceDeclaration found');
+        $debug('TypeAlias/InterfaceDeclaration/OpaqueType found');
 
         const typeAliasName = path.node.id.name;
         if (!typeAliasName) {

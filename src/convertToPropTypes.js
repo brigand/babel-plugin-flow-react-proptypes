@@ -96,6 +96,10 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     node = node.right;
   }
 
+  if (node.type === 'OpaqueType') {
+    node = node.impltype;
+  }
+
   if (node.type === 'InterfaceDeclaration') {
     node = node.body;
   }
