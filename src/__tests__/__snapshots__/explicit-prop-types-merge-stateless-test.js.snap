@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`explicit-prop-types-merge-stateless-test 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = require('react');
+
+var Foo = function Foo(props) {
+  return React.createElement(
+    'div',
+    null,
+    props.a,
+    props.b,
+    props.c,
+    props.d
+  );
+};
+
+Foo.propTypes = {
+  a: _propTypes2.default.number.isRequired,
+  b: _propTypes2.default.string,
+  c: _propTypes2.default.string.isRequired,
+  d: _propTypes2.default.string
+};
+exports.default = Foo;"
+`;

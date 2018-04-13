@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`class-single-type-test 1`] = `
+exports[`optional-default-props-class-test 1`] = `
 "'use strict';
 
 Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\\"value\\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _propTypes = require('prop-types');
 
@@ -20,6 +22,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = require('react');
+var PropTypes = require('prop-types');
 
 var Foo = function (_React$Component) {
   _inherits(Foo, _React$Component);
@@ -30,11 +33,29 @@ var Foo = function (_React$Component) {
     return _possibleConstructorReturn(this, (Foo.__proto__ || Object.getPrototypeOf(Foo)).apply(this, arguments));
   }
 
+  _createClass(Foo, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        null,
+        this.props.a,
+        this.props.b,
+        this.props.c
+      );
+    }
+  }]);
+
   return Foo;
 }(React.Component);
 
+Foo.defaultProps = {
+  a: 7
+};
 Foo.propTypes = {
-  a_number: _propTypes2.default.number.isRequired
+  a: _propTypes2.default.number,
+  b: _propTypes2.default.number.isRequired,
+  c: _propTypes2.default.string.isRequired
 };
 exports.default = Foo;"
 `;

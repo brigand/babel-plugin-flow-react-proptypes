@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`import-object 1`] = `
-"\\"use strict\\";
+exports[`class-single-type-anon-test 1`] = `
+"'use strict';
 
 Object.defineProperty(exports, \\"__esModule\\", {
   value: true
 });
 
-var _propTypes = require(\\"prop-types\\");
+var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -19,23 +19,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== \\"function\\" && superClass !== null) { throw new TypeError(\\"Super expression must either be null or a function, not \\" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-exports.default = function () {
-  var C = function (_React$Component) {
-    _inherits(C, _React$Component);
+var React = require('react');
 
-    function C() {
-      _classCallCheck(this, C);
+var _class = function (_React$Component) {
+  _inherits(_class, _React$Component);
 
-      return _possibleConstructorReturn(this, (C.__proto__ || Object.getPrototypeOf(C)).apply(this, arguments));
-    }
+  function _class() {
+    _classCallCheck(this, _class);
 
-    return C;
-  }(React.Component);
+    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+  }
 
-  C.propTypes = {
-    a_prop: _propTypes2.default.bool.isRequired
-  };
+  return _class;
+}(React.Component);
 
-  return C;
-};"
+_class.propTypes = {
+  a_number: _propTypes2.default.number.isRequired
+};
+exports.default = _class;"
 `;

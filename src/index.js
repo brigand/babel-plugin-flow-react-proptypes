@@ -136,7 +136,7 @@ module.exports = function flowReactPropTypes(babel) {
     if (!exportValueNode) {
       exportValueNode = t.identifier(exportName);
     }
-  
+
     if (!opts.deadCode || shouldUseImport()) {
       if (!path.parentPath.isProgram()) return;
       const body = path.parentPath.node.body;
@@ -364,7 +364,7 @@ module.exports = function flowReactPropTypes(babel) {
       valueNode = propTypesAST;
       if (attribute === 'propTypes') {
         valueNode = wrapInDceCheck(valueNode);
-        if (opts.mergeExplicitPropTypes && valueNode.properties) {
+        if (valueNode.properties) {
           valueNode.properties = mergeExplicitPropTypes(valueNode.properties, path, name);
         }
       }
@@ -426,7 +426,7 @@ module.exports = function flowReactPropTypes(babel) {
     }
 
     if (propsOrVar) {
-      if (opts.defaultPropsOptional && propsOrVar.properties) {
+      if (propsOrVar.properties) {
         propsOrVar.properties =
           setDefaultPropsOptional(propsOrVar.properties, targetPath, name);
       }
@@ -751,7 +751,7 @@ module.exports = function flowReactPropTypes(babel) {
             importedTypes[typeName].accessNode = ptFunc;
             return;
           }
-           
+
 
           const accessNode = getFromModule(path, {
             type: 'named',

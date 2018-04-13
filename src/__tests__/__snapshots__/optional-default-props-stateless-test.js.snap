@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`optional-default-props-stateless-test 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = require('react');
+var PropTypes = require('prop-types');
+
+var Foo = function Foo(props) {
+  return React.createElement(
+    'div',
+    null,
+    props.a,
+    props.b,
+    props.c
+  );
+};
+
+Foo.propTypes = {
+  a: _propTypes2.default.number,
+  b: _propTypes2.default.number.isRequired,
+  c: _propTypes2.default.string.isRequired
+};
+Foo.defaultProps = {
+  a: 7
+};
+
+exports.default = Foo;"
+`;

@@ -1,16 +1,17 @@
 const babel = require('babel-core');
 const content = `
-var React = require('react');
-
 type FooProps = {
-  a_number: number,
-}
+  a_prop: boolean,
+};
 
-export default class Foo extends React.Component<FooProps> {
-}
+export default () => {
+  return class extends React.Component {
+    props: FooProps;
+  }
+};
 `;
 
-it('class-single-type-test', () => {
+it('hoc-handles-anon-class-return', () => {
   const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],

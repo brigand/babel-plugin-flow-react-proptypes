@@ -6,11 +6,11 @@ type FooProps = {
   a_number: number,
 }
 
-export default class Foo extends React.Component<FooProps> {
+export default class extends React.Component<FooProps> {
 }
 `;
 
-it('class-single-type-test', () => {
+it('class-single-type-anon-test', () => {
   const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],

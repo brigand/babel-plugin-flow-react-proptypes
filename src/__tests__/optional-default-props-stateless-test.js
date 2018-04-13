@@ -1,16 +1,32 @@
 const babel = require('babel-core');
 const content = `
 var React = require('react');
+var PropTypes = require('prop-types');
 
 type FooProps = {
-  a_number: number,
+  a: number,
+  b: number,
+  c: string,
 }
 
-export default class Foo extends React.Component<FooProps> {
+const Foo = (props: FooProps) => {
+  return (
+    <div>
+      {props.a}
+      {props.b}
+      {props.c}
+    </div>
+  );
 }
+
+Foo.defaultProps = {
+  a: 7
+};
+
+export default Foo;
 `;
 
-it('class-single-type-test', () => {
+it('optional-default-props-stateless-test', () => {
   const res = babel.transform(content, {
     babelrc: false,
     presets: ['es2015', 'stage-1', 'react'],
