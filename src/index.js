@@ -284,7 +284,13 @@ module.exports = function flowReactPropTypes(babel) {
     const generatedAndExplicitProperties =
       generatedProperties.concat(explicitPropNode.properties)
         .reduce((acc, i) => {
-          acc[i.key.name] = i;
+          if (!!i.key) {
+            acc[i.key.name] = i;
+          }
+          else if (!!i.argument) {
+            acc[i.argument.name] = i;
+          }
+          
           return acc;
         }, {});
 
