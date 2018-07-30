@@ -258,7 +258,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     };
   }
   else if (node.type === 'GenericTypeAnnotation' || node.type === 'ArrayTypeAnnotation') {
-    if (node.type === 'ArrayTypeAnnotation' || node.id.name === 'Array') {
+    if (node.type === 'ArrayTypeAnnotation' || node.id.name === 'Array' || node.id.name === '$ReadOnlyArray') {
       let arrayType;
       if (node.type === 'ArrayTypeAnnotation') {
         arrayType = node.elementType;
