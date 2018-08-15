@@ -166,6 +166,11 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     }
 
     const spreadShape = convertToPropTypes(subnode, importedTypes, internalTypes);
+
+    if (spreadShape.type === 'raw') {
+      return [];
+    }
+
     const properties = spreadShape.properties;
 
     // Unless or until the strange default behavior changes in flow (https://github.com/facebook/flow/issues/3214)

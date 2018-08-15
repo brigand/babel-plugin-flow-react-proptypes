@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`imported-spread 1`] = `
+"'use strict';
+
+var _other_module = require('./other_module');
+
+var React = require('react');"
+`;
