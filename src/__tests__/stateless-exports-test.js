@@ -15,7 +15,7 @@ export const C2 = function({ m } : { m : string }) {
 it('stateless-exports', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatchSnapshot();

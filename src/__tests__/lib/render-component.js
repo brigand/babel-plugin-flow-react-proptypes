@@ -3,7 +3,7 @@ module.exports.transform = (someString) => {
 
   const babelOpts = {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../../')],
   };
   return babel.transform(someString, babelOpts).code;

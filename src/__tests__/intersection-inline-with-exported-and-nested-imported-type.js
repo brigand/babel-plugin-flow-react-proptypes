@@ -1,6 +1,6 @@
 const babel = require('babel-core');
 const content = `
-  
+
 import type {NamedType} from "./types";
 
 export type ExportedType = {
@@ -18,7 +18,7 @@ class MyComponent extends React.Component {
 it('intersection inline with exported and nested imported type', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatchSnapshot();

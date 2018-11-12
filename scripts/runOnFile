@@ -39,13 +39,13 @@ else {
   console.error(`Running in default config`);
   babelConfig = {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', [self, selfConfig]],
   };
 }
 
 if (process.argv.includes('--leave-esm')) {
-  babelConfig.presets.splice(babelConfig.presets.indexOf('es2015'), 1);
+  babelConfig.presets.splice(babelConfig.presets.indexOf('env'), 1);
 }
 
 const input = fs.readFileSync(process.argv[2], 'utf-8');

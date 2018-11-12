@@ -14,7 +14,7 @@ const C = (props: Props) => <div />;
 it('imports-two-types-172', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: [['es2015', { modules: false }], 'stage-1', 'react'],
+    presets: [['env', { modules: false }], 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatch(/\{\s*bpfrpt_proptype_Foo/);

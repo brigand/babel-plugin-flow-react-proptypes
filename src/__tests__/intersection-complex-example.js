@@ -15,8 +15,8 @@ export type U = {
   bar: number,
 }
 
-export type X = NamedType & 
-  { a: NamedType, b: string} & 
+export type X = NamedType &
+  { a: NamedType, b: string} &
   DefaultType & U & T;
 
 type V = {
@@ -40,7 +40,7 @@ export default C;
 it('intersection-exported-type-alias-unexported-object-literal', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatchSnapshot();

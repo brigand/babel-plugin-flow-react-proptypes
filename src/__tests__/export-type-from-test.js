@@ -6,7 +6,7 @@ export type { Foo, Bar } from './types';
 it('export-type-from', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
 
@@ -18,7 +18,7 @@ it('export-type-from', () => {
 it('export-type-from-esm', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: [['es2015', {modules: false}], 'stage-1', 'react'],
+    presets: [['env', {modules: false}], 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatch(/import.*Foo.*types/);

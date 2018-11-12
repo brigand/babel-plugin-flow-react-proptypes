@@ -10,7 +10,7 @@ const Foo = (props: Props) => <div />;
 
 const getOpts = opts => ({
   babelrc: false,
-  presets: [['es2015', { modules: false }], 'stage-1', 'react'],
+  presets: [['env', { modules: false }], 'stage-1', 'react'],
   plugins: ['syntax-flow', [require('../'), opts]],
 });
 

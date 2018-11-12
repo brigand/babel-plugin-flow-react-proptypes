@@ -15,7 +15,7 @@ type FooC = {
 class Foo extends React.Component {
   props: FooT;
   context: FooC;
-  
+
   render() {
     return <div />;
   }
@@ -27,7 +27,7 @@ export default Foo;
 it('allows specifying both props and context', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatchSnapshot();

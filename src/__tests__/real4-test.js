@@ -96,7 +96,7 @@ export type directApplyRecentFilesGet = DirectApplyFile[];
 it('real4', () => {
   const res = babel.transform(content, {
     babelrc: false,
-    presets: ['es2015', 'stage-1', 'react'],
+    presets: ['env', 'stage-1', 'react'],
     plugins: ['syntax-flow', require('../')],
   }).code;
   expect(res).toMatchSnapshot();
