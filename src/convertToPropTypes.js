@@ -360,6 +360,10 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
     }
     resultPropType = {type: 'oneOf', options: [value]};
   }
+  else if (node.type === 'EmptyTypeAnnotation') {
+    // empty types are impossible to satisfy as are oneOfType's without any options
+    resultPropType = {type: 'oneOfType', optional: node.optional, options: []};
+  }
 
   if (resultPropType) {
     return resultPropType;
