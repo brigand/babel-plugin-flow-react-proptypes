@@ -1,12 +1,18 @@
 const babel = require('babel-core');
 const content = `
 type Empty = {
-    [key: string]: empty,
+    impossibleProp: empty,
+};
+
+class Foo extends React.Component {
+  props: FooProps;
+
+  render() { return <div /> }
 };
 `;
 
 it('empty', () => {
-  expect(() => babel.transform(content, {
+  const res = babel.transform(content, {
     babelrc: false,
     presets: ['@babel/env', '@babel/react', '@babel/flow'],
     plugins: [
@@ -14,5 +20,6 @@ it('empty', () => {
       require('../'),
       "@babel/plugin-proposal-class-properties"
     ],
-  }).code).not.toThrow();
+  }).code;
+  expect(res).toMatchSnapshot();
 });
