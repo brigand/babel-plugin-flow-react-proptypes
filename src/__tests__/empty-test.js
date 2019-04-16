@@ -6,7 +6,7 @@ type Empty = {
 `;
 
 it('empty', () => {
-  const res = babel.transform(content, {
+  expect(() => babel.transform(content, {
     babelrc: false,
     presets: ['@babel/env', '@babel/react', '@babel/flow'],
     plugins: [
@@ -14,6 +14,5 @@ it('empty', () => {
       require('../'),
       "@babel/plugin-proposal-class-properties"
     ],
-  }).code;
-  expect(res).toMatchSnapshot();
+  }).code).not.toThrow();
 });
