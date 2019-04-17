@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`empty-type 1`] = `
+"\\"use strict\\";
+
+var _propTypes = _interopRequireDefault(require(\\"prop-types\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var React = require('react');
+
+var C = function C(props) {
+  return React.createElement(\\"div\\", null);
+};
+
+C.propTypes = {
+  foo: function foo(props, propName, componentName) {
+    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+      throw new Error(\\"Prop \`\\".concat(propName, \\"\` has type 'any' or 'mixed', but was not provided to \`\\").concat(componentName, \\"\`. Pass undefined or any other value.\\"));
+    }
+  }
+};"
+`;

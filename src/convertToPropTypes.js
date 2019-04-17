@@ -191,6 +191,7 @@ export default function convertToPropTypes(node, importedTypes, internalTypes) {
   else if (node.type === 'ExistsTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'MixedTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'TypeofTypeAnnotation') resultPropType = {type: 'any'};
+  else if (node.type === 'EmptyTypeAnnotation') resultPropType = {type: 'any'};
   else if (node.type === 'NumberTypeAnnotation') resultPropType = {type: 'number'};
   else if (node.type === 'StringTypeAnnotation') resultPropType = {type: 'string'};
   else if (node.type === 'BooleanTypeAnnotation') resultPropType = {type: 'bool'};

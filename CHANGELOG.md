@@ -1,3 +1,9 @@
+## 25.1.0
+
+Adds support for `empty` type - [#213]
+
+[#213]: https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/213
+
 ## 25.0.0
 
 We now support and depend on babel 7 - [#211]
