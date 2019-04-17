@@ -599,7 +599,9 @@ module.exports = function flowReactPropTypes(babel) {
             return;
           }
 
-          propTypes = props;
+          // Clone the props node so that we don't use the same node in multiple
+          // parts of the same AST.
+          propTypes = JSON.parse(JSON.stringify(props));
         }
 
         if (secondSuperParam && (secondSuperParam.type === 'ObjectTypeAnnotation' || secondSuperParam.type === 'IntersectionTypeAnnotation')) {

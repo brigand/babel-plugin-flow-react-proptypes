@@ -86,7 +86,7 @@ function (_React$Component2) {
 
 exports.default = TableOfContentsRowWithQuery;
 
-_defineProperty(TableOfContentsRowWithQuery, \\"propTypes\\", Object.assign({}, bpfrpt_proptype_RowProps === _propTypes.default.any ? {} : _otherRow.bpfrpt_proptype_RowProps, {
+_defineProperty(TableOfContentsRowWithQuery, \\"propTypes\\", Object.assign({}, _otherRow.bpfrpt_proptype_RowProps === _propTypes.default.any ? {} : _otherRow.bpfrpt_proptype_RowProps, {
   domain: _propTypes.default.string.isRequired
 }));"
 `;
