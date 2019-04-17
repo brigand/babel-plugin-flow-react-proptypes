@@ -126,12 +126,12 @@ _defineProperty(D, \\"propTypes\\", Object.assign({}, {
   b: function b() {
     return (typeof _types.bpfrpt_proptype_NamedType === \\"function\\" ? _types.bpfrpt_proptype_NamedType.isRequired ? _types.bpfrpt_proptype_NamedType.isRequired : _types.bpfrpt_proptype_NamedType : _propTypes.default.shape(_types.bpfrpt_proptype_NamedType).isRequired).apply(this, arguments);
   }
-}, Object.assign({}, bpfrpt_proptype_NamedType === _propTypes.default.any ? {} : _types.bpfrpt_proptype_NamedType, {
+}, Object.assign({}, _types.bpfrpt_proptype_NamedType === _propTypes.default.any ? {} : _types.bpfrpt_proptype_NamedType, {
   a: function a() {
     return (typeof _types.bpfrpt_proptype_NamedType === \\"function\\" ? _types.bpfrpt_proptype_NamedType.isRequired ? _types.bpfrpt_proptype_NamedType.isRequired : _types.bpfrpt_proptype_NamedType : _propTypes.default.shape(_types.bpfrpt_proptype_NamedType).isRequired).apply(this, arguments);
   },
   b: _propTypes.default.string.isRequired
-}, bpfrpt_proptype_DefaultType === _propTypes.default.any ? {} : _types.bpfrpt_proptype_DefaultType, {
+}, _types.bpfrpt_proptype_DefaultType === _propTypes.default.any ? {} : _types.bpfrpt_proptype_DefaultType, {
   bar: _propTypes.default.number.isRequired
 }, {
   foo: _propTypes.default.string.isRequired

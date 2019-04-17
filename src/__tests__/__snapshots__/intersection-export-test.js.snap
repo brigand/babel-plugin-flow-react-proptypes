@@ -63,7 +63,7 @@ function (_React$Component) {
   return C;
 }(React.Component);
 
-_defineProperty(C, \\"propTypes\\", Object.assign({}, bpfrpt_proptype_T === _propTypes.default.any ? {} : _T.bpfrpt_proptype_T, {
+_defineProperty(C, \\"propTypes\\", Object.assign({}, _T.bpfrpt_proptype_T === _propTypes.default.any ? {} : _T.bpfrpt_proptype_T, {
   foo: _propTypes.default.string.isRequired
 }));
 

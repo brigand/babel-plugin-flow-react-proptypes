@@ -367,7 +367,9 @@ module.exports = function flowReactPropTypes(babel) {
         return;
       }
 
-      valueNode = propTypesAST;
+      // Clone the props node so that we don't use the same node in multiple
+      // parts of the same AST.
+      valueNode = JSON.parse(JSON.stringify(propTypesAST));
       if (attribute === 'propTypes') {
         valueNode = wrapInDceCheck(valueNode);
         if (valueNode.properties) {
@@ -599,9 +601,7 @@ module.exports = function flowReactPropTypes(babel) {
             return;
           }
 
-          // Clone the props node so that we don't use the same node in multiple
-          // parts of the same AST.
-          propTypes = JSON.parse(JSON.stringify(props));
+          propTypes = props;
         }
 
         if (secondSuperParam && (secondSuperParam.type === 'ObjectTypeAnnotation' || secondSuperParam.type === 'IntersectionTypeAnnotation')) {
