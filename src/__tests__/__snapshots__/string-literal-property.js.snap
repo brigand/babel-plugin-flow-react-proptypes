@@ -13,7 +13,7 @@ var _propTypes = _interopRequireDefault(require(\\"prop-types\\"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var bpfrpt_proptype_T = {
-  \\"read-only\\": _propTypes.default.oneOf([true]).isRequired,
+  read-only: _propTypes.default.oneOf([true]).isRequired,
   regular: _propTypes.default.oneOf([true]).isRequired
 };
 exports.bpfrpt_proptype_T = bpfrpt_proptype_T;"

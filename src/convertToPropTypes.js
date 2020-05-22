@@ -2,7 +2,7 @@ import {$debug, isExact, PLUGIN_NAME} from './util';
 
 function getObjectTypePropertyKey(node) {
   if (node.key.type === 'StringLiteral') {
-    return `"${node.key.value}"`;
+    return node.key.value;
   }
   return node.key.name;
 }
